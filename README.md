@@ -1,2 +1,2 @@
-# hrqr.github.io
+# HRQR.github.io
 Human Readable Quick Response

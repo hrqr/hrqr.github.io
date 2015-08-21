@@ -47,7 +47,7 @@
          function onInputText() {
              drawHRQR("svgDiv", document.getElementById("textContent").value)
              var contentHR =  encodeURI('http://hrqr.org/?'+document.getElementById("textContent").value);
-             document.getElementById("u117-6").innerHTML = "You can use this code to embed the HRQR Tag in to your webpage:<br><br> <div>" +
+             document.getElementById("u117-6").innerHTML = "You can use this code to embed the HRQR Tag in to your webpage:<br><div>" +
                      '<b>&lt;iframe src=&quot;'+contentHR+'&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; height=&quot;'+(getSize(2)+30)+'&quot; width=&quot;'+ (getSize(2)+30)+'&quot;&gt;&lt;/iframe&gt;</b></div>';
          }
 

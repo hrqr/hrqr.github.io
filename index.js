@@ -115,7 +115,7 @@ function finalizeCanvas(idToChange) {
 
 // start canvas
 
-function prepareHRQR(idToChange, messageContent) {
+function drawHRQR(idToChange, messageContent) {
 	
 	 globalStates.text = messageContent;
  //   globalStates.text = document.getElementById('textContent').value;
@@ -129,7 +129,7 @@ function prepareHRQR(idToChange, messageContent) {
    //if (checkString < 0) checkString = checkString * -1;
   //  var textCheck = checkString.toString(32);
 
-    console.log(crc16(globalStates.text));
+   // console.log(crc16(globalStates.text));
 
     var textCheck = makeThree(itob62(crc16(globalStates.text)));
 
@@ -137,7 +137,7 @@ function prepareHRQR(idToChange, messageContent) {
         textCheck ="0";
     }
 
-    console.log(textCheck);
+   // console.log(textCheck);
 
   //  console.log(crc16(globalStates.text));
 

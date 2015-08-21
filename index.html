@@ -33,110 +33,29 @@
                  globalStates.left = 0;
                  globalStates.top = 15;
 
-
-                 console.log(window.location.search.substr(1));
-
-                 document.getElementById("textContent").value = window.location.search.substr(1);
-
                  document.getElementById("body").innerHTML = '<center><div id="svgDiv"></div></center>';
 
                  drawHRQR("svgDiv",window.location.search.substr(1));
 
-
-
-                 /*
-                              <iframe src="http://www.w3schools.com"></iframe>
-
-                  "height":document.body.scrollHeight,
-
-                  "width":document.body.scrollWidth
-
-                              */
-
-
-
              }else{
-
-                 drawHRQR("svgDiv","");
-
-
-             window.addEventListener('resize', function () {
-                 drawHRQR("svgDiv",document.getElementById("textContent").value);
-
-
-             });
+                 var elemDiv = document.createElement('script');
+                 elemDiv.src = 'page.js';
+     document.body.appendChild(elemDiv);
              }
-
-
-
-
-         }
+         };
 
          function onInputText() {
              drawHRQR("svgDiv", document.getElementById("textContent").value)
-
-            var contentHR =  encodeURI('http://hrqr.org/?'+document.getElementById("textContent").value);
-
+             var contentHR =  encodeURI('http://hrqr.org/?'+document.getElementById("textContent").value);
              document.getElementById("u117-6").innerHTML = "You can use this code to embed the HRQR Tag in to your webpage:<br><br> <div>" +
                      '<b>&lt;iframe src=&quot;'+contentHR+'&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; height=&quot;'+(getSize(2)+30)+'&quot; width=&quot;'+ (getSize(2)+30)+'&quot;&gt;&lt;/iframe&gt;</b></div>';
-                }
+         }
+
 
      </script>
 
    </head>
  <body id="body">
- <link rel="stylesheet" type="text/css" href="css/site_global.css?3848068315"/>
- <link rel="stylesheet" type="text/css" href="css/index.css?290881740" id="pagesheet"/>
- <div class="clearfix" id="page"><!-- column -->
-   <div class="clearfix colelem" id="pu77"><!-- group -->
-    <div class="clip_frame grpelem" id="u77"><!-- image -->
-     <img class="block" id="u77_img" src="images/logo.jpg" alt="" width="167" height="78"/>
-    </div>
-    <div class="clearfix grpelem" id="u83-4"><!-- content -->
-     <p>Human Readable Quick Response Code</p>
-    </div>
-    <a class="nonblock nontext clip_frame grpelem" id="u101" href="https://itunes.apple.com/us/app/hrqr/id1020790145"><!-- image --><img class="block" id="u101_img" src="images/images.jpg" alt="" width="168" height="58"/></a>
-   </div>
-   <div class="clearfix colelem" id="pu84"><!-- group -->
-    <a class="nonblock nontext clip_frame grpelem" id="u84" href="http://media.mit.edu"><!-- image --><img class="block" id="u84_img" src="images/ml.jpg" alt="" width="33" height="33"/></a>
-    <div class="clearfix grpelem" id="u90-5"><!-- content -->
-     <p><a class="nonblock" href="http://media.mit.edu"><span id="u90">MIT Media Lab</span></a></p>
-    </div>
-    <a class="nonblock nontext clip_frame grpelem" id="u91" href="http://fluid.media.mit.edu"><!-- image --><img class="block" id="u91_img" src="images/fl.jpg" alt="" width="32" height="32"/></a>
-    <div class="clearfix grpelem" id="u98-5"><!-- content -->
-     <p><a class="nonblock" href="http://fluid.media.mit.edu"><span id="u98">Fluid Interfaces Group</span></a></p>
-    </div>
-    <div class="clearfix grpelem" id="u100-5"><!-- content -->
-     <p><a class="nonblock" href="http://www.valentinheun.com"><span class="Character-Style">Created By Valentin Heun</span></a></p>
-    </div>
-    <a class="nonblock nontext clip_frame grpelem" id="u119" href="https://github.com/hrqr/hrqr.github.io/"><!-- image --><img class="block" id="u119_img" src="images/github.png" alt="" width="207" height="77"/></a>
-   </div>
-   <div class="clearfix colelem" id="pu75"><!-- group -->
-    <div class="clearfix grpelem" id="u75"><!-- group -->
-     <div class="grpelem" id="u108"><!-- custom html -->
-      <div id="svgDiv"></div>
 
-</div>
-    </div>
-    <div class="grpelem" id="u114"><!-- custom html -->
-     <style>
-textarea{
-border:1px solid #C9C9C9;
-background-color:#FFFFFF;
-width:435px;
-height:50px;
-}
-</style>
-
-<textarea  id="textContent" rows="3" cols="70" maxlength="250" border="1" style="border:1" placeholder='Type your message here to generate the HRQR Code....' oninput='onInputText()'></textarea>
-</div>
-    <div class="clearfix grpelem" id="u117-6"><!-- content -->
-     <p>The page generates HRQR Codes in the SVG format. You can print it to a PDF file and open it in Illustrator. Use the iOS-App to read your codes.</p>
-     <p>The iOS App will handle messages starting with &quot;http://&quot; as links.</p>
-    </div>
-   </div>
-   <div class="colelem" id="u76"><!-- simple frame --></div>
-   <div class="verticalspacer"></div>
-  </div>
     </body>
 </html>

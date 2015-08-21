@@ -3,7 +3,7 @@ document.getElementById("body").innerHTML =   '<link rel="stylesheet" type="text
     ' <div class="clearfix" id="page"><!-- column -->'+
     '   <div class="clearfix colelem" id="pu77"><!-- group -->'+
     '    <div class="clip_frame grpelem" id="u77"><!-- image -->'+
-    '     <img class="block" id="u77_img" src="images/logo.jpg" alt="" width="167" height="78"/>'+
+    '     <img class="block" id="u77_img" src="images/logo.svg" alt="" width="167" height="78"/>'+
     '    </div>'+
     '    <div class="clearfix grpelem" id="u83-4"><!-- content -->'+
     '     <p>Human Readable Quick Response Code</p>'+
@@ -15,11 +15,11 @@ document.getElementById("body").innerHTML =   '<link rel="stylesheet" type="text
     '</a>'+
     '   </div>'+
     '   <div class="clearfix colelem" id="pu84"><!-- group -->'+
-    '    <a class="nonblock nontext clip_frame grpelem" id="u84" href="http://media.mit.edu"><!-- image --><img class="block" id="u84_img" src="images/ml.jpg" alt="" width="33" height="33"/></a>'+
+    '    <a class="nonblock nontext clip_frame grpelem" id="u84" href="http://media.mit.edu"><!-- image --><img class="block" id="u84_img" src="images/ml.svg" alt="" width="33" height="33"/></a>'+
     '    <div class="clearfix grpelem" id="u90-5"><!-- content -->'+
     '     <p><a class="nonblock" href="http://media.mit.edu"><span id="u90">MIT Media Lab</span></a></p>'+
     '    </div>'+
-    '    <a class="nonblock nontext clip_frame grpelem" id="u91" href="http://fluid.media.mit.edu"><!-- image --><img class="block" id="u91_img" src="images/fl.jpg" alt="" width="32" height="32"/></a>'+
+    '    <a class="nonblock nontext clip_frame grpelem" id="u91" href="http://fluid.media.mit.edu"><!-- image --><img class="block" id="u91_img" src="images/fl.svg" alt="" width="32" height="32"/></a>'+
     '    <div class="clearfix grpelem" id="u98-5"><!-- content -->'+
     '     <p><a class="nonblock" href="http://fluid.media.mit.edu"><span id="u98">Fluid Interfaces Group</span></a></p>'+
     '    </div>'+

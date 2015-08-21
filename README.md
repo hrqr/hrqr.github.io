@@ -24,8 +24,8 @@ Then call the javascript function:
   drawHRQR("svgDiv","message");
 ```   
 
-"svgDiv" should be the ID of your div tag.
-"message" should be the message you want to encode in HRQR.
+* ["svgDiv" should be the ID of your div tag.
+* ["message" should be the message you want to encode in HRQR.
    
 
 You can change some properties of the tag by replacing values in an object called: globalStates 
@@ -39,17 +39,17 @@ The following properties can be changed:
 
 The Width and Height allways should be identical:
 ```
-globalStates.width
-globalStates.height
+* [.width
+* [.height
 ```
 
 This defines the left and top white space between the div boarder and the tag.
 ```
-globalStates.left
-globalStates.top
+* [.left
+* [.top
 ```
 
 This thefines the color of the tag.
 ```
-globalStates.color
+* [.color
 ```

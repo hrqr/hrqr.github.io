@@ -47,7 +47,7 @@ document.getElementById("body").innerHTML =   '<link rel="stylesheet" type="text
     '<textarea  id="textContent" rows="3" cols="70" maxlength="250" border="1" style="border:1" placeholder="Type your message here to generate the HRQR Code...." oninput="onInputText()"></textarea>'+
     '</div>'+
     '    <div class="clearfix grpelem" id="u117-6"><!-- content -->'+
-    '     <p>The page generates HRQR Codes in the SVG format. You can print it to a PDF file and open it in Illustrator. Use the iOS-App to read your codes.</p>'+
+    '     <p>This page generates HRQR Codes in the SVG format that can be downloaded or embeded. Use the iOS-App to read your codes.</p>'+
     '     <p>The iOS App will handle messages starting with &quot;http://&quot; as links.</p>'+
     '    </div>'+
     '   </div>'+

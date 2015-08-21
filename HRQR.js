@@ -191,7 +191,7 @@ function drawHRQR(idToChange, messageContent) {
     var colSize = (globalStates.colums * globalStates.width*4)+(globalStates.width*4);
     var rowSize = ((globalStates.colums) * globalStates.width*4)+(globalStates.width*4);
 
-    globalStates.htmlText = '<svg class="SVG" id="svg'+idToChange+'" width = "' + colSize + 'px" height = "' + rowSize + 'px" >\n';
+    globalStates.htmlText = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width = "' + colSize + 'px" height = "' + rowSize + 'px" >\n';
 
     writeLetters();
     finalizeCanvas(idToChange);
@@ -631,3 +631,5 @@ else if(i.length === 2){
 
 
 }
+
+

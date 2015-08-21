@@ -8,8 +8,11 @@ document.getElementById("body").innerHTML =   '<link rel="stylesheet" type="text
     '    <div class="clearfix grpelem" id="u83-4"><!-- content -->'+
     '     <p>Human Readable Quick Response Code</p>'+
     '    </div>'+
-    '    <a class="nonblock nontext clip_frame grpelem" id="u101" href="https://itunes.apple.com/us/app/hrqr/id1020790145"><!-- image -->'+
-    '    <img class="block" id="u101_img" src="images/images.jpg" alt="" width="168" height="58"/></a>'+
+
+
+    '    <a class="nonblock nontext clip_frame grpelem" id="u101" href="https://itunes.apple.com/us/app/hrqr/id1020790145" style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg) no-repeat;width:180px;height:44px;"><!-- image -->'+
+    //'    <img class="block" id="u101_img" src="http://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg alt="" width="168" height="58"/>
+    '</a>'+
     '   </div>'+
     '   <div class="clearfix colelem" id="pu84"><!-- group -->'+
     '    <a class="nonblock nontext clip_frame grpelem" id="u84" href="http://media.mit.edu"><!-- image --><img class="block" id="u84_img" src="images/ml.jpg" alt="" width="33" height="33"/></a>'+
@@ -24,7 +27,7 @@ document.getElementById("body").innerHTML =   '<link rel="stylesheet" type="text
     '     <p><a class="nonblock" href="http://www.valentinheun.com"><span class="Character-Style">Created By Valentin Heun</span></a></p>'+
     '    </div>'+
     '    <a class="nonblock nontext clip_frame grpelem" id="u119" href="https://github.com/hrqr/hrqr.github.io/"><!-- image -->'+
-    '    <img class="block" id="u119_img" src="images/github.png" alt="" width="207" height="77"/></a>'+
+    '     <img class="block" id="u119_img" src="images/github.png" alt="" width="177" height="65"/></a>'+
     '   </div>'+
     '   <div class="clearfix colelem" id="pu75"><!-- group -->'+
     '    <div class="clearfix grpelem" id="u75"><!-- group -->'+

@@ -1,0 +1,14 @@
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# idea editing tools
+.idea
+
+# osx directory files
+.DS_Store

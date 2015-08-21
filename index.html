@@ -27,8 +27,12 @@
 
              if(window.location.search !== ""){
 
+                 globalStates.width = 6;
+                 globalStates.height = 6;
+
                  globalStates.left = 0;
-                 globalStates.top = 0;
+                 globalStates.top = 15;
+
 
                  console.log(window.location.search.substr(1));
 
@@ -38,7 +42,17 @@
 
                  drawHRQR("svgDiv",window.location.search.substr(1));
 
-               
+
+
+                 /*
+                              <iframe src="http://www.w3schools.com"></iframe>
+
+                  "height":document.body.scrollHeight,
+
+                  "width":document.body.scrollWidth
+
+                              */
+
 
 
              }else{
@@ -52,6 +66,22 @@
 
              });
              }
+
+
+
+
+         }
+
+         function onInputText() {
+             drawHRQR("svgDiv", document.getElementById("textContent").value)
+
+            var contentHR =  encodeURI('http://hrqr.org/?'+document.getElementById("textContent").value);
+
+             document.getElementById("u117-6").innerHTML = "You can use this code to embed the HRQR Tag in to your webpage:<br><br> <div>" +
+                     '<b>&lt;iframe src=&quot;'+contentHR+'&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; height=&quot;'+(getSize(2)+30)+'&quot; width=&quot;'+ (getSize(2)+30)+'&quot;&gt;&lt;/iframe&gt;</b></div>' +
+                     '<br><br> <iframe src="http://hrqr.org/?sdasdasdsd" frameborder="0" scrolling="no" height="214" width="214"></iframe>';
+
+                  // '<iframe src="http://hrqr.org/?'+document.getElementById("textContent").value+'" frameborder="0" height="'+(getSize()+30)+'" width="'+ (getSize()+30)+'"></iframe>';
          }
 
      </script>
@@ -101,7 +131,7 @@ height:50px;
 }
 </style>
 
-<textarea  id="textContent" rows="3" cols="70" maxlength="250" border="1" style="border:1" placeholder='Type your message here to generate the HRQR Code....' oninput='drawHRQR("svgDiv", document.getElementById("textContent").value)'></textarea>
+<textarea  id="textContent" rows="3" cols="70" maxlength="250" border="1" style="border:1" placeholder='Type your message here to generate the HRQR Code....' oninput='onInputText()'></textarea>
 </div>
     <div class="clearfix grpelem" id="u117-6"><!-- content -->
      <p>The page generates HRQR Codes in the SVG format. You can print it to a PDF file and open it in Illustrator. Use the iOS-App to read your codes.</p>

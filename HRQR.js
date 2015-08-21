@@ -101,6 +101,12 @@ for(var i = 0; i< globalStates.database[letter].big.shape.length; i++){
 };
 */
 
+
+function getSize(minus) {
+  return (((globalStates.colums-1)*4)+3) *globalStates.width-minus;
+
+}
+
 function randomLetter() {
     var string = "abcdefghijklmnopqrstuvwxyz";
     return string[Math.floor(Math.random() * 26)]

@@ -52,7 +52,16 @@
     <script src="letterdatabase.js"></script>
     <script src="index.js"></script>
       <script>
-          prepareCanvas();
+          prepareHRQR("svgDiv","");
+          
+          
+          window.onload = function () {
+    prepareHRQR("svgDiv","");
+    window.addEventListener('resize', function () {
+        prepareHRQR("svgDiv","");
+    });
+          }
+          
 	</script>
 </div>
     </div>
@@ -63,11 +72,10 @@ border:1px solid #C9C9C9;
 background-color:#FFFFFF;
 width:435;
 50
-
 }
 </style>
 
-<textarea  id="textContent" rows="3" cols="70" maxlength="250" border="1" style="border:1" placeholder='Type your message here to generate the HRQR Code....' oninput='prepareCanvas()'></textarea>
+<textarea  id="textContent" rows="3" cols="70" maxlength="250" border="1" style="border:1" placeholder='Type your message here to generate the HRQR Code....' oninput='prepareHRQR("svgDiv", document.getElementById("textContent").value)'></textarea>
 </div>
     <div class="clearfix grpelem" id="u117-6"><!-- content -->
      <p>The page generates HRQR Codes in the SVG format. You can print it to a PDF file and open it in Illustrator. Use the iOS-App to read your codes.</p>

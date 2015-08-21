@@ -47,11 +47,11 @@ var globalStates = {
 };
 
 // helper funktions
-
+/*
 window.onload = function () {
-    prepareCanvas();
+    prepareHRQR("svgDiv","");
     window.addEventListener('resize', function () {
-        prepareCanvas();
+        prepareHRQR("svgDiv","");
     });
 
 
@@ -100,7 +100,7 @@ for(var i = 0; i< globalStates.database[letter].big.shape.length; i++){
 
 
 };
-
+*/
 
 function randomLetter() {
     var string = "abcdefghijklmnopqrstuvwxyz";
@@ -108,15 +108,17 @@ function randomLetter() {
 
 }
 
-function finalizeCanvas() {
+function finalizeCanvas(idToChange) {
     globalStates.htmlText = globalStates.htmlText + '</svg>';
-    document.getElementById('svgDiv').innerHTML = globalStates.htmlText;
+    document.getElementById(idToChange).innerHTML = globalStates.htmlText;
 }
 
 // start canvas
 
-function prepareCanvas() {
-    globalStates.text = document.getElementById('textContent').value;
+function prepareHRQR(idToChange, messageContent) {
+	
+	 globalStates.text = messageContent;
+ //   globalStates.text = document.getElementById('textContent').value;
 
  //   var checkString = crc32(globalStates.text);
    // console.log((Math.round(crc16(globalStates.text))).toString(32));
@@ -187,7 +189,7 @@ function prepareCanvas() {
     globalStates.htmlText = '<svg class="SVG" id="svg" width = "' + colSize + 'px" height = "' + rowSize + 'px" >\n';
 
     writeLetters();
-    finalizeCanvas();
+    finalizeCanvas(idToChange);
 }
 
 

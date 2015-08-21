@@ -2,13 +2,18 @@
 Human Readable Quick Response Created by Valentin Heun
 
 
-If you want to embbed HRQR Codes in to your own webpage, just do the following:
+If you want to embbed HRQR Codes in to your own webpage, you have two possibilities:
 
-Add the two scripts "HRQRLetterdatabase.js" and "HRQR.js" to your webpage 
+1. Go to hrqr.org enter your message and copy past the generated iframe.
+
+2. Do the following steps:
+
+Add the two scripts "HRQRLetterdatabase.js" and "HRQR.js" to your webpage.
+If you want to stay conform with the main project, you can include the letter database directly from this project.
 
 Example:
 ```
- <script src="HRQRLetterdatabase.js"></script>
+ <script src="https://raw.githubusercontent.com/hrqr/hrqr.github.io/master/HRQRLetterdatabase.js"></script>
  <script src="HRQR.js"></script> 
 ```
  
@@ -28,7 +33,7 @@ Then call the javascript function:
 * "message" should be the message you want to encode in HRQR.
    
 
-You can change some properties of the tag by replacing values in an object called: globalStates 
+You can change some properties of the library by defining values in an object called: globalStates
    
 Example:
 ```

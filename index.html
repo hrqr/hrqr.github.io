@@ -51,7 +51,12 @@
 
 
          function onInputText() {
-             drawHRQR("svgDiv", document.getElementById("textContent").value);
+
+           var msg =  document.getElementById("textContent").value;
+
+          msg =  msg.replace(/(\r\n|\n|\r)/gm,"");
+
+             drawHRQR("svgDiv", msg);
              var svgFile =   Base64.encode(document.getElementById("svgDiv").innerHTML);
 
            //  console.log(svgFile);

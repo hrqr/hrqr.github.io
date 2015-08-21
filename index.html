@@ -49,14 +49,16 @@
      <div class="grpelem" id="u108"><!-- custom html -->
       <div id="svgDiv"></div>
 
-    <script src="letterdatabase.js"></script>
-    <script src="index.js"></script>
-      <script>
-       
+    <script src="HRQRLetterdatabase.js"></script>
+    <script src="HRQR.js"></script>
+      <script>        
           window.onload = function () {
+          	 
     drawHRQR("svgDiv","");
     window.addEventListener('resize', function () {
         drawHRQR("svgDiv","");
+     
+        
     });
           }
           

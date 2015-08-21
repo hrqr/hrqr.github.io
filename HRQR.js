@@ -26,7 +26,6 @@
 var globalCanvas = {};
 var globalStates = {
     database: letterDatabase,
-    svg: document.getElementById('svg'),
     lineCounter: 0,
     rowCounter: 0,
     searchDepth: 1,
@@ -43,7 +42,7 @@ var globalStates = {
     rows: 0,
     colums: 0,
     countingLine: 0,
-    kubik: true
+    kubik: false
 };
 
 // helper funktions
@@ -186,7 +185,7 @@ function drawHRQR(idToChange, messageContent) {
     var colSize = (globalStates.colums * globalStates.width*4)+(globalStates.width*4);
     var rowSize = ((globalStates.colums) * globalStates.width*4)+(globalStates.width*4);
 
-    globalStates.htmlText = '<svg class="SVG" id="svg" width = "' + colSize + 'px" height = "' + rowSize + 'px" >\n';
+    globalStates.htmlText = '<svg class="SVG" id="svg'+idToChange+'" width = "' + colSize + 'px" height = "' + rowSize + 'px" >\n';
 
     writeLetters();
     finalizeCanvas(idToChange);

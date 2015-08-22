@@ -74,8 +74,8 @@ document.getElementById("body").innerHTML =   '<link rel="stylesheet" type="text
 
 drawHRQR("svgDiv","");
 
-
 window.addEventListener('resize', function () {
+
     drawHRQR("svgDiv",document.getElementById("textContent").value);
 
 

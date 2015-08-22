@@ -9,7 +9,7 @@ document.getElementById("body").innerHTML =   '<link rel="stylesheet" type="text
     '"><span class="Character-Style" id="u133">Bookmark this link to HRQRify any URL while browsing.</span></a></p>'+
     '<p><a title="HRQR" class="nonblock" href="' +
     "javascript:(function()%7Blocation.href='http://hrqr.org?'+location.href;%7D)();" +
-    '"><span class="Character-Style" id="u133-4">Use the App to transfer the URL to your mobile device.</span></a></p>'+
+    '"><span class="Character-Style" id="u133-4">With the App you can then transfer the URL to any mobile device.</span></a></p>'+
     '</div>'+
 '<a title="HRQR" class="nonblock nontext grpelem" id="u137" href="' +
     "javascript:(function()%7Blocation.href='http://hrqr.org?'+location.href;%7D)();" +
@@ -61,7 +61,7 @@ document.getElementById("body").innerHTML =   '<link rel="stylesheet" type="text
     '<textarea  id="textContent" rows="3" cols="70" maxlength="250" border="1" style="border:1" placeholder="Type your message here to generate the HRQR Code...." oninput="onInputText()"></textarea>'+
     '</div>'+
     '    <div class="clearfix grpelem" id="u117-6"><!-- content -->'+
-    '     <p>Use the <a href="https://itunes.apple.com/us/app/hrqr/id1020790145"  style= "text-decoration: underline;">iOS-App</a> or this <a href="/abc"  style= "text-decoration: underline;">Alphabet</a> to read your codes.<br> The iOS App will handle messages starting with &quot;http://&quot; as links.</p>'+
+    '     <p>Use the <a href="https://itunes.apple.com/us/app/hrqr/id1020790145"  style= "text-decoration: underline;"><b>iOS-App</b></a> or this <a href="/abc"  style= "text-decoration: underline;"><b>Alphabet</b></a> to read your codes.<br> The iOS App will handle messages starting with &quot;http://&quot; as links.</p>'+
     '     <p></p>'+
     '    </div>'+
     '   </div>'+

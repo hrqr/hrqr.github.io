@@ -24,7 +24,7 @@ document.getElementById("body").innerHTML =   '<link rel="stylesheet" type="text
     '    </div>'+
 
 
-    '    <a class="nonblock nontext clip_frame grpelem" id="u101" href="https://itunes.apple.com/us/app/hrqr/id1020790145" style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg) no-repeat;width:180px;height:44px;"><!-- image -->'+
+    '    <a class="nonblock nontext clip_frame grpelem" id="u101" href="https://itunes.apple.com/us/app/hrqr/id1020790145" style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg) no-repeat;width:480px;height:44px;"><!-- image -->'+
     //'    <img class="block" id="u101_img" src="http://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg alt="" width="168" height="58"/>
     '</a>'+
     '   </div>'+
@@ -41,7 +41,7 @@ document.getElementById("body").innerHTML =   '<link rel="stylesheet" type="text
     '     <p><a class="nonblock" href="http://www.valentinheun.com"><span class="Character-Style">Created By Valentin Heun</span></a></p>'+
     '    </div>'+
     '    <a class="nonblock nontext clip_frame grpelem" id="u119" href="https://github.com/hrqr/hrqr.github.io/"><!-- image -->'+
-    '     <img class="block" id="u119_img" src="images/github.png" alt="" width="177" height="65"/></a>'+
+    '     <img class="block" id="u119_img" src="images/github.png" alt="" width="100" height="37"/></a>'+
     '   </div>'+
     '   <div class="clearfix colelem" id="pu75"><!-- group -->'+
     '    <div class="clearfix grpelem" id="u75"><!-- group -->'+

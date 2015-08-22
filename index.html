@@ -33,9 +33,14 @@
                  globalStates.left = 0;
                  globalStates.top = 15;
 
-                 document.getElementById("body").innerHTML = '<center><a href="https://itunes.apple.com/us/app/hrqr/id1020790145"><div id="svgDiv"></div></a></center>';
+                 document.getElementById("body").innerHTML = '<center><div id="svgDiv"></div></center>';
 
                  drawHRQR("svgDiv",decodeURI(window.location.search.substr(1)));
+
+                 var dataHR = document.getElementById("svgDiv").innerHTML;
+                 document.getElementById("svgDiv").innerHTML  = '<a href="https://itunes.apple.com/us/app/hrqr/id1020790145" target="_blank">'+  dataHR  + '</a>';
+                 console.log(document.getElementById("svgDiv").innerHTML);
+
 
              }else{
                  var elemDiv = document.createElement('script');

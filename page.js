@@ -1,6 +1,20 @@
 document.getElementById("body").innerHTML =   '<link rel="stylesheet" type="text/css" href="css/site_global.css?3848068315"/>'+
     ' <link rel="stylesheet" type="text/css" href="css/index.css?290881740" id="pagesheet"/>'+
-    ' <div class="clearfix" id="page"><!-- column -->'+
+    ' <div class="clearfix" id="page"><!-- column -->' +
+    ' <div class="position_content" id="page_position_content">' +
+    '<div class="clearfix colelem" id="pu133-8"><!-- group -->'+
+'<div class="clearfix grpelem" id="u133-8"><!-- content -->'+
+'   <p><a title="HRQR" class="nonblock" href="' +
+    "javascript:(function()%7Blocation.href='http://hrqr.org?'+location.href;%7D)();" +
+    '"><span class="Character-Style" id="u133">Bookmark this link to HRQRify any URL while browsing.</span></a></p>'+
+    '<p><a title="HRQR" class="nonblock" href="' +
+    "javascript:(function()%7Blocation.href='http://hrqr.org?'+location.href;%7D)();" +
+    '"><span class="Character-Style" id="u133-4">Use the App to transfer the URL to your mobile device.</span></a></p>'+
+    '</div>'+
+'<a title="HRQR" class="nonblock nontext grpelem" id="u137" href="' +
+    "javascript:(function()%7Blocation.href='http://hrqr.org?'+location.href;%7D)();" +
+    '"><!-- svg --><img class="svg" src="images/book.svg" width="18" height="50" alt="" data-mu-svgfallback="images/book.png"/></a>'+
+    '</div>'+
     '   <div class="clearfix colelem" id="pu77"><!-- group -->'+
     '    <div class="clip_frame grpelem" id="u77"><!-- image -->'+
     '     <img class="block" id="u77_img" src="images/logo.svg" alt="" width="167" height="78"/>'+
@@ -53,6 +67,7 @@ document.getElementById("body").innerHTML =   '<link rel="stylesheet" type="text
     '   </div>'+
     '   <div class="colelem" id="u76"><!-- simple frame --></div>'+
     '   <div class="verticalspacer"></div>'+
+    '  </div>'+
     '  </div>';
 
 

@@ -1,5 +1,7 @@
 /* Created by Valentin Heun on 7/13/15.
 
+The MIT License (MIT)
+
  Copyright (c) 2015 Valentin Heun
 
  Permission is hereby granted, free of charge, to any person obtaining a copy

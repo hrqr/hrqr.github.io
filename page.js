@@ -4,12 +4,10 @@ document.getElementById("body").innerHTML =   '<link rel="stylesheet" type="text
     ' <div class="position_content" id="page_position_content">' +
     '<div class="clearfix colelem" id="pu133-8"><!-- group -->'+
 '<div class="clearfix grpelem" id="u133-8"><!-- content -->'+
-'   <p><a title="HRQR" class="nonblock" href="' +
-    "javascript:(function()%7Blocation.href='http://hrqr.org?'+location.href;%7D)();" +
-    '"><span class="Character-Style" id="u133">HRQRify any URL with this Bookmarklet.</span></a></p>'+
+'   <p> &nbsp; &nbsp; &nbsp;</p>'+
     '<p><a title="HRQR" class="nonblock" href="' +
     "javascript:(function()%7Blocation.href='http://hrqr.org?'+location.href;%7D)();" +
-    '"><span class="Character-Style" id="u133-4"></span></a></p>'+
+    '"><span class="Character-Style" id="u133-4">HRQRify Bookmarklet</span></a></p>'+
     '</div>'+
 '<a title="HRQR" class="nonblock nontext grpelem" id="u137" href="' +
     "javascript:(function()%7Blocation.href='http://hrqr.org?'+location.href;%7D)();" +

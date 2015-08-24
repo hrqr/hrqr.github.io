@@ -6,10 +6,10 @@ document.getElementById("body").innerHTML =   '<link rel="stylesheet" type="text
 '<div class="clearfix grpelem" id="u133-8"><!-- content -->'+
 '   <p><a title="HRQR" class="nonblock" href="' +
     "javascript:(function()%7Blocation.href='http://hrqr.org?'+location.href;%7D)();" +
-    '"><span class="Character-Style" id="u133">Bookmark this link to HRQRify any URL while browsing.</span></a></p>'+
+    '"><span class="Character-Style" id="u133">HRQRify any URL with this Bookmarklet.</span></a></p>'+
     '<p><a title="HRQR" class="nonblock" href="' +
     "javascript:(function()%7Blocation.href='http://hrqr.org?'+location.href;%7D)();" +
-    '"><span class="Character-Style" id="u133-4">With the App you can then transfer the URL to any mobile device.</span></a></p>'+
+    '"><span class="Character-Style" id="u133-4"></span></a></p>'+
     '</div>'+
 '<a title="HRQR" class="nonblock nontext grpelem" id="u137" href="' +
     "javascript:(function()%7Blocation.href='http://hrqr.org?'+location.href;%7D)();" +

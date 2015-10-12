@@ -1,7 +1,7 @@
 .version.index /* version checker */
 {
-	color: #0000F1;
-	background-color: #F5849B;
+	color: #000001;
+	background-color: #CB7FEC;
 }
 
 .html
@@ -24,7 +24,6 @@
 
 #page_position_content
 {
-	margin-top: -36px;
 	padding-bottom: 62px;
 	width: 0.01px;
 }
@@ -296,13 +295,6 @@
 body
 {
 	position: relative;
-	min-width: 960px;
-	padding-top: 36px;
-	padding-bottom: 36px;
-}
-
-#page .verticalspacer
-{
-	clear: both;
+	/*min-width: 960px;*/
 }
 

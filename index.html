@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html class="html" lang="en-US">
- <head>  
+ <head>
+
+  <script type="text/javascript">
+   if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required":["jquery-1.8.3.min.js", "museutils.js", "jquery.watch.js", "index.css"], "outOfDate":[]};
+</script>
+  
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
   <meta name="generator" content="2015.0.2.310"/>
-<meta property="og:title" content="HRQR" />
-<meta property="og:image" content="http://hrqr.org/images/hrqr.jpg" />
-<meta property="og:url" content="http://hrqr.org" />
-<meta property="og:description" content="A Human Readable Replacement for QR-Codes Called HRQR" />
-
-<!-- for Twitter -->          
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="HRQR" />
-<meta name="twitter:description" content="A Human Readable Replacement for QR-Codes Called HRQR" />
-<meta name="twitter:image" content="http://www.hrqr.org/images/hrqr.jpg" />
-  
-  <title>HRQR: Human Readable Quick Response Code</title>
+  <title>Home</title>
   <!-- CSS -->
-
-
-     <script src="HRQRLetterdatabase.js"></script>
-     <script src="HRQR.js"></script>
-     <script>
+  <link rel="stylesheet" type="text/css" href="css/site_global.css?3961155610"/>
+  <link rel="stylesheet" type="text/css" href="css/index.css?4059399323" id="pagesheet"/>
+  <!-- Other scripts -->
+  <script type="text/javascript">
+   document.documentElement.className += ' js';
+</script>
+    <!--custom head HTML-->
+  
+     <script src="assets/HRQRLetterdatabase.js"></script>
+     <script src="assets/HRQR.js"></script>
+ <script>
 
 
          window.onload = function () {
@@ -33,19 +33,30 @@
                  globalStates.left = 0;
                  globalStates.top = 15;
 
-                 document.getElementById("body").innerHTML = '<center><div id="svgDiv"></div></center>';
+                  document.getElementsByTagName("body")[0].innerHTML = '<center><div id="svgDiv"></div></center>';
 
                  drawHRQR("svgDiv",decodeURI(window.location.search.substr(1)));
 
                  var dataHR = document.getElementById("svgDiv").innerHTML;
                  document.getElementById("svgDiv").innerHTML  = '<a href="https://itunes.apple.com/us/app/hrqr/id1020790145" target="_parent">'+  dataHR  + '</a>';
-                 console.log(document.getElementById("svgDiv").innerHTML);
+                // console.log(document.getElementById("svgDiv").innerHTML);
 
 
              }else{
-                 var elemDiv = document.createElement('script');
-                 elemDiv.src = 'page.js';
-     document.body.appendChild(elemDiv);
+                
+
+
+drawHRQR("svgDiv","");
+
+window.addEventListener('resize', function () {
+
+    drawHRQR("svgDiv",document.getElementById("textContent").value);
+
+
+});
+
+
+
              }
          };
 
@@ -67,7 +78,7 @@
            //  console.log(svgFile);
 
              var contentHR =  encodeURI('http://hrqr.org/?'+document.getElementById("textContent").value);
-             document.getElementById("u117-6").innerHTML = "Get a SVG Image of your code <a style= 'text-decoration: underline;' download='data.svg' href-lang='image/svg+xml' href='data:image/svg+xml;base64,\n"+svgFile+"'>here</a> or embed it in to your own page:<br><div>" +
+             document.getElementById("text6").innerHTML = "Get a SVG Image of your code <a style= 'text-decoration: underline;' download='data.svg' href-lang='image/svg+xml' href='data:image/svg+xml;base64,\n"+svgFile+"'>here</a> or embed it in to your own page:<br><div>" +
                      '<b>&lt;iframe src=&quot;'+contentHR+'&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; height=&quot;'+(getSize(2)+30)+'&quot; width=&quot;'+ (getSize(2)+30)+'&quot;&gt;&lt;/iframe&gt;</b></div>' +
                      '<br><br>';
 
@@ -77,12 +88,7 @@
 
 
      </script>
-
-   </head>
- <body id="body">
-
-    </body>
- <script>
+<script>
      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -92,4 +98,91 @@
      ga('send', 'pageview');
 
  </script>
+ </head>
+ <body>
+
+  <div class="clearfix" id="page"><!-- column -->
+   <div class="position_content" id="page_position_content">
+    <div class="clearfix colelem" id="pu133-5"><!-- group -->
+     <div class="clearfix grpelem" id="u133-5"><!-- content -->
+      <p><a class="nonblock" href="javascript:(function()%7Blocation.href='http://hrqr.org?'+location.href;%7D)();"><span class="Character-Style" id="u133">HRQRify Bookmarklet</span></a></p>
+     </div>
+     <a class="nonblock nontext grpelem" id="u137" href="javascript:(function()%7Blocation.href='http://hrqr.org?'+location.href;%7D)();"><!-- svg --><img class="svg" src="images/pasted%20svg%20945x287.svg" width="18" height="50" alt="" data-mu-svgfallback="images/pasted%20svg%20945x287_poster_.png"/></a>
+    </div>
+    <div class="clearfix colelem" id="pu83-4"><!-- group -->
+     <div class="clearfix grpelem" id="u83-4"><!-- content -->
+      <p>Human Readable Quick Response Code</p>
+     </div>
+     <img class="svg grpelem" id="u156" src="images/logo.svg" width="168" height="78" alt="" data-mu-svgfallback="images/logo_poster_.png"/><!-- svg -->
+     <div class="grpelem" id="u171"><!-- custom html -->
+       <a class="nonblock nontext clip_frame grpelem" href="https://itunes.apple.com/us/app/hrqr/id1020790145" style="overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg) no-repeat;height:44px;z-index: 29;background-color: transparent;
+	width:150px;-ms-transform: scale(1.3,1.3);-webkit-transform: scale(1.3,1.3);transform: scale(1.3,1.3);"></a>
+</div>
+     <div class="rgba-background clearfix grpelem" id="u155-6" data-mu-ie-matrix="progid:DXImageTransform.Microsoft.Matrix(M11=0.9205,M12=-0.3907,M21=0.3907,M22=0.9205,SizingMethod='auto expand')" data-mu-ie-matrix-dx="-4" data-mu-ie-matrix-dy="-11"><!-- content -->
+      <p>New URL</p>
+      <p>Symbols</p>
+     </div>
+    </div>
+    <div class="clearfix colelem" id="pu161"><!-- group -->
+     <img class="svg grpelem" id="u161" src="images/ml.svg" width="34" height="34" alt="" data-mu-svgfallback="images/ml_poster_.png"/><!-- svg -->
+     <div class="clearfix grpelem" id="u90-5"><!-- content -->
+      <p><a class="nonblock" href="http://media.mit.edu"><span id="u90">MIT Media Lab</span></a></p>
+     </div>
+     <img class="svg grpelem" id="u166" src="images/fl.svg" width="32" height="32" alt="" data-mu-svgfallback="images/fl_poster_.png"/><!-- svg -->
+     <div class="clearfix grpelem" id="u98-5"><!-- content -->
+      <p><a class="nonblock" href="http://fluid.media.mit.edu"><span id="u98">Fluid Interfaces Group</span></a></p>
+     </div>
+     <div class="clearfix grpelem" id="u100-5"><!-- content -->
+      <p><a class="nonblock" href="http://www.valentinheun.com"><span class="Character-Style">Created By Valentin Heun</span></a></p>
+     </div>
+     <a class="nonblock nontext clip_frame grpelem" id="u119" href="https://github.com/hrqr/hrqr.github.io/"><!-- image --><img class="block" id="u119_img" src="images/github.png" alt="" width="97" height="36"/></a>
+    </div>
+    <div class="clearfix colelem" id="u75"><!-- column -->
+     <div class="position_content" id="u75_position_content">
+      <div class="clearfix colelem" id="pu144"><!-- group -->
+       <div class="grpelem" id="u144"><!-- custom html -->
+        <textarea  id="textContent" rows="3" cols="70" maxlength="250" border="1px" style="border:1px solid #c5c5c5;" placeholder="Type your message here to generate the HRQR Code...." oninput="onInputText()"></textarea>
+</div>
+       <div class="grpelem" id="u146"><!-- custom html -->
+        <div class="clearfix grpelem" id="text6"><!-- content -->
+<p>Use the <a href="https://itunes.apple.com/us/app/hrqr/id1020790145"  style= "text-decoration: underline;"><b>iOS-App</b></a> or this <a href="/abc"  style= "text-decoration: underline;"><b>Alphabet</b></a> to read your codes.<br> The iOS App will handle messages starting with &quot;http://&quot; as links.</p>
+<p></p>
+</div>
+</div>
+      </div>
+      <div class="colelem" id="u108"><!-- custom html -->
+        <div id="svgDiv"></div>
+</div>
+      <div class="clearfix colelem" id="u153-3"><!-- content -->
+       <p>&nbsp;</p>
+      </div>
+     </div>
+    </div>
+    <div class="colelem" id="u76"><!-- simple frame --></div>
+    <div class="verticalspacer"></div>
+   </div>
+  </div>
+  <!-- JS includes -->
+  <script type="text/javascript">
+   if (document.location.protocol != 'https:') document.write('\x3Cscript src="http://musecdn.businesscatalyst.com/scripts/4.0/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
+</script>
+  <script type="text/javascript">
+   window.jQuery || document.write('\x3Cscript src="scripts/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
+</script>
+  <script src="scripts/museutils.js?275725342" type="text/javascript"></script>
+  <script src="scripts/jquery.watch.js?3999102769" type="text/javascript"></script>
+  <!-- Other scripts -->
+  <script type="text/javascript">
+   $(document).ready(function() { try {
+(function(){var a={},b=function(a){if(a.match(/^rgb/))return a=a.replace(/\s+/g,"").match(/([\d\,]+)/gi)[0].split(","),(parseInt(a[0])<<16)+(parseInt(a[1])<<8)+parseInt(a[2]);if(a.match(/^\#/))return parseInt(a.substr(1),16);return 0};(function(){$('link[type="text/css"]').each(function(){var b=($(this).attr("href")||"").match(/\/?css\/([\w\-]+\.css)\?(\d+)/);b&&b[1]&&b[2]&&(a[b[1]]=b[2])})})();(function(){$("body").append('<div class="version" style="display:none; width:1px; height:1px;"></div>');
+for(var c=$(".version"),d=0;d<Muse.assets.required.length;){var f=Muse.assets.required[d],g=f.match(/([\w\-\.]+)\.(\w+)$/),k=g&&g[1]?g[1]:null,g=g&&g[2]?g[2]:null;switch(g.toLowerCase()){case "css":k=k.replace(/\W/gi,"_").replace(/^([^a-z])/gi,"_$1");c.addClass(k);var g=b(c.css("color")),h=b(c.css("background-color"));g!=0||h!=0?(Muse.assets.required.splice(d,1),"undefined"!=typeof a[f]&&(g!=a[f]>>>24||h!=(a[f]&16777215))&&Muse.assets.outOfDate.push(f)):d++;c.removeClass(k);break;case "js":k.match(/^jquery-[\d\.]+/gi)&&
+typeof $!="undefined"?Muse.assets.required.splice(d,1):d++;break;default:throw Error("Unsupported file type: "+g);}}c.remove();if(Muse.assets.outOfDate.length||Muse.assets.required.length)c="Some files on the server may be missing or incorrect. Clear browser cache and try again. If the problem persists please contact website author.",(d=location&&location.search&&location.search.match&&location.search.match(/muse_debug/gi))&&Muse.assets.outOfDate.length&&(c+="\nOut of date: "+Muse.assets.outOfDate.join(",")),d&&Muse.assets.required.length&&(c+="\nMissing: "+Muse.assets.required.join(",")),alert(c)})()})();/* body */
+Muse.Utils.transformMarkupToFixBrowserProblemsPreInit();/* body */
+Muse.Utils.prepHyperlinks(true);/* body */
+Muse.Utils.fullPage('#page');/* 100% height page */
+Muse.Utils.showWidgetsWhenReady();/* body */
+Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
+} catch(e) { if (e && 'function' == typeof e.notify) e.notify(); else Muse.Assert.fail('Error calling selector function:' + e); }});
+</script>
+   </body>
 </html>

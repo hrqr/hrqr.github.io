@@ -13,32 +13,50 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://hrqr.org/images/logo.jpg</loc>
-    <lastmod>2015-08-20</lastmod>
+    <loc>http://hrqr.org/assets/hrqrletterdatabase.js</loc>
+    <lastmod>2015-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://hrqr.org/images/images.jpg</loc>
-    <lastmod>2015-08-20</lastmod>
+    <loc>http://hrqr.org/assets/hrqr.js</loc>
+    <lastmod>2015-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://hrqr.org/images/ml.jpg</loc>
-    <lastmod>2015-08-20</lastmod>
+    <loc>http://hrqr.org/assets/fl.svg</loc>
+    <lastmod>2015-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://hrqr.org/images/fl.jpg</loc>
-    <lastmod>2015-08-20</lastmod>
+    <loc>http://hrqr.org/assets/github.png</loc>
+    <lastmod>2015-08-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://hrqr.org/assets/logo.svg</loc>
+    <lastmod>2015-08-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://hrqr.org/assets/ml.svg</loc>
+    <lastmod>2015-08-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://hrqr.org/images/github.png</loc>
+    <lastmod>2015-10-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://hrqr.org/index.html</loc>
-    <lastmod>2015-08-20</lastmod>
+    <lastmod>2015-10-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

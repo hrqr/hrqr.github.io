@@ -1,7 +1,7 @@
-<manifest alg="2" build="2015.0.2.310" opt="false" iceEnabled="true" iceMarkupVersion="2" exportTarget="other" domain="hrqr.org" resolutions="1x" timestamp="1444694034017">
+<manifest alg="2" build="2015.0.2.310" opt="false" iceEnabled="true" iceMarkupVersion="2" exportTarget="other" domain="hrqr.org" resolutions="1x" timestamp="1445822813686">
   <folder name="css">
     <file name="site_global.css" crc="3961155610"/>
-    <file name="index.css" crc="30113772" ref="index"/>
+    <file name="index.css" crc="10211977" ref="index"/>
   </folder>
   <folder name="assets">
     <file name="index.js" crc="255777987" seo="true" mt="1440094843000"/>
@@ -16,7 +16,6 @@
   <folder name="scripts">
     <file name="jquery-1.8.3.min.js" crc="196614522" ref="index"/>
     <file name="museutils.js" crc="275725342" ref="index"/>
-    <file name="pie.js" crc="3827607177" ref="index"/>
   </folder>
   <folder name="images">
     <file name="pasted svg 945x287.svg" crc="3947399798" ref="index"/>
@@ -29,5 +28,5 @@
     <file name="fl_poster_.png" crc="3894895822" ref="index"/>
     <file name="github.png" crc="236894276" seo="true" ref="index"/>
   </folder>
-  <file name="index.html" crc="445457490" seo="true" mt="1444694028007" redirect="true"/>
+  <file name="index.html" crc="241252783" seo="true" mt="1445822807555" redirect="true"/>
 </manifest>

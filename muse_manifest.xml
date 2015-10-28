@@ -1,7 +1,7 @@
-<manifest alg="2" build="2015.0.2.310" opt="false" iceEnabled="true" iceMarkupVersion="2" exportTarget="other" domain="hrqr.org" resolutions="1x" timestamp="1445824365493">
+<manifest alg="2" build="2015.0.2.310" opt="false" iceEnabled="true" iceMarkupVersion="2" exportTarget="other" domain="hrqr.org" resolutions="1x" timestamp="1446040774403">
   <folder name="css">
-    <file name="site_global.css" crc="3961155610"/>
-    <file name="index.css" crc="4234866284" ref="index"/>
+    <file name="site_global.css" crc="3848068315"/>
+    <file name="index.css" crc="308110544" ref="index"/>
   </folder>
   <folder name="assets">
     <file name="index.js" crc="255777987" seo="true" mt="1440094843000"/>
@@ -28,5 +28,5 @@
     <file name="fl_poster_.png" crc="3894895822" ref="index"/>
     <file name="github.png" crc="236894276" seo="true" ref="index"/>
   </folder>
-  <file name="index.html" crc="254302634" seo="true" mt="1445824358348" redirect="true"/>
+  <file name="index.html" crc="142007706" seo="true" mt="1446040766748" redirect="true"/>
 </manifest>

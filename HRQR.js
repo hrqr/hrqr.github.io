@@ -1,31 +1,7 @@
 /* Created by Valentin Heun on 7/13/15.
-
-The MIT License (MIT)
-
  Copyright (c) 2015 Valentin Heun
-
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to deal
- in the Software without restriction, including without limitation the rights
- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
-
- The above copyright notice and this permission notice shall be included in
- all copies or substantial portions of the Software.
-
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- THE SOFTWARE.
-
+ Licensed under the MIT license: https://opensource.org/licenses/MIT
  */
-
-
-var globalCanvas = {};
 var globalStates = {
     database: letterDatabase,
     lineCounter: 0,
@@ -40,78 +16,16 @@ var globalStates = {
     htmlText: "",
     text: "",
     textTrim: "",
-    color: "000000",
+    color: "#000000",
     rows: 0,
     colums: 0,
     countingLine: 0,
-    kubik: false
+    kubik: false,
+    background: "#FFFFFF"
 };
-
-window.onload = function () {
-
-
-}
-
-
-// helper funktions
-/*
-window.onload = function () {
-    prepareHRQR("svgDiv","");
-    window.addEventListener('resize', function () {
-        prepareHRQR("svgDiv","");
-    });
-
-
-
-    var tnumber = crc32("101101110");
-
-    console.log("tom "+tnumber);
-  //  console.log ("pet "+itob32(tnumber));
-    console.log("test "+tnumber.toString(32));
-
-    for(var letter in globalStates.database){
-
-        var bitNumber = 0;
-
-
-        for(var i = 0; i< 64; i++){
-            var mask = 1 << i; // gets the 6th bit
-            bitNumber &= ~mask;
-        }
-
-for(var i = 0; i< globalStates.database[letter].big.shape.length; i++){
-
-   var bitValue =  globalStates.database[letter].big.shape[i];
-
-    var mask = 1 << i; // gets the 6th bit
-
-    if(bitValue === 1){
-        bitNumber |= mask;
-    }
-    else
-    {
-        bitNumber &= ~mask;
-    }
-
-}
-
-        console.log(letter);
-
-        console.log("this is the number: "+bitNumber);
-
-        console.log("in bits: "+bitNumber.toString(2));
-
-        console.log(globalStates.database[letter].big.shape);
-
-    }
-
-
-};
-*/
-
 
 function getSize(minus) {
-  return (((globalStates.colums-1)*4)+3) *globalStates.width-minus;
+    return (((globalStates.colums - 1) * 4) + 3) * globalStates.width - minus;
 
 }
 
@@ -128,131 +42,44 @@ function finalizeCanvas(idToChange) {
 
 // start canvas
 
-function drawHRQR(idToChange, messageContent) {
+function drawHRQR(idToChange, messageContent, size, color, outline, background) {
 
-    /*
-
-
-    console.log("test");
-
-    for(var keyt in globalStates.database){
-
-
-
-        var log = keyt + "";
-
-        var test = globalStates.database[keyt]["big"]["shape"];
-
-        var numbers = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-
-
-        for(var w = 0; w<21; w++){
-            log +=",";
-
-            var number ="";
-            var logCount = 0;
-
-
-            while(1) {
-                var randNumMin = 0;
-                var randNumMax = 21;
-                var randInt = (Math.floor(Math.random() * (randNumMax - randNumMin + 1)) + randNumMin);
-
-                if(numbers[randInt] === 0){
-                    numbers[randInt] = 1;
-                    break;
-                }
-
-            }
-
-
-
-        for(var i = 0; i<21; i++){
-
-            if(numbers[i] === 1){
-                number += test[i];
-            }
-
-
-        }
-
-
-        // test against all letters
-        for(var keyt2 in globalStates.database){
-            if(keyt2 !== keyt){
-
-            var test2 = globalStates.database[keyt2]["big"]["shape"];
-
-
-            var number2 ="";
-
-            for(var i2 = 0; i2<21; i2++){
-
-                if(numbers[i2] === 1){
-                    number2 += test2[i2];
-                }
-
-            }
-
-
-            if(number2 === number){
-                logCount++;
-            }
-            }
-        }
-
-        log += logCount;
-
-        }
-
-        console.log(log);
-
+    if (size === undefined) {
+        size = 8;
     }
+    globalStates.width = globalStates.height = size;
 
-    */
+    if (color === undefined) {
+        color = "#000000";
+    }
+    globalStates.color = color;
 
-	
-	 globalStates.text = messageContent;
- //   globalStates.text = document.getElementById('textContent').value;
+    if (outline === undefined) {
+        outline = 20;
+    }
+    globalStates.left = globalStates.top = outline;
 
- //   var checkString = crc32(globalStates.text);
-   // console.log((Math.round(crc16(globalStates.text))).toString(32));
+    if (background === undefined) {
+        background = "#FFFFFF";
+    }
+    globalStates.background = background;
 
-   // console.log(makeThree(itob62(crc16(globalStates.text))));
-
-
-   //if (checkString < 0) checkString = checkString * -1;
-  //  var textCheck = checkString.toString(32);
-
-   // console.log(crc16(globalStates.text));
+    globalStates.text = messageContent;
 
     var textCheck = makeThree(itob62(crc16(globalStates.text)));
 
-    if(globalStates.text ===""){
-        textCheck ="0";
+    if (globalStates.text === "") {
+        textCheck = "0";
     }
-
-   // console.log(textCheck);
-
-  //  console.log(crc16(globalStates.text));
 
 // generate text with crc32 checksum
     globalStates.text = globalStates.text + " & " + textCheck;
 
     // reading the length of the document
-    //  globalStates.textTrimLength = globalStates.text.replace(/\s/g, '').length;
 
     globalStates.textTrimLength = 0;
-    /*
-    for (var i = 0; i < globalStates.text.length; i++)
-        if (globalStates.text[i] in globalStates.database) {
-            globalStates.textTrimLength++;
-        }
-*/
 
     for (var i = 0; i < globalStates.text.length; i++) {
-
-       // letter = globalStates.text[i];
 
         for (var r = globalStates.searchDepth; r >= 0; r--) {
             var letterTemp = "";
@@ -261,13 +88,11 @@ function drawHRQR(idToChange, messageContent) {
             }
 
             if (letterTemp in globalStates.database) {
-              //  letter = letterTemp;
                 i = i + r;
 
                 globalStates.textTrimLength++;
 
-                if(globalStates.database[letterTemp]["big"]["width"]=== 7)
-                {
+                if (globalStates.database[letterTemp]["big"]["width"] === 7) {
                     console.log("ching");
                     globalStates.textTrimLength++;
                 }
@@ -277,27 +102,20 @@ function drawHRQR(idToChange, messageContent) {
         }
     }
 
-
     globalStates.rowCounter = 0;
     globalStates.lineCounter = 0;
     globalStates.line = 0;
 
-
-    console.log(globalStates.textTrimLength);
     // here it needs to have the right size
-
-
     globalStates.colums = globalStates.textTrimLength;
 
-
-    var countTwo = 1;
+    // var countTwo = 1;
     globalStates.colums = Math.ceil(Math.sqrt(globalStates.colums * 2));
 
     if (globalStates.colums % 2) {
         globalStates.colums = globalStates.colums + 1;
-        countTwo = 1;
+        //countTwo = 1;
     }
-
 
     var amountOfLetters = globalStates.colums * (globalStates.colums / 2);
 
@@ -306,22 +124,16 @@ function drawHRQR(idToChange, messageContent) {
 
         globalStates.textTrimLength++;
 
-     /*   globalStates.textTrimLength = 0;
-        for (var i = 0; i < globalStates.text.length; i++)
-            if (globalStates.text[i] in globalStates.database) {
-                globalStates.textTrimLength++;
-            }*/
     }
 
-    var colSize = (globalStates.colums * globalStates.width*4)+(globalStates.width*4);
-    var rowSize = ((globalStates.colums) * globalStates.width*4)+(globalStates.width*4);
+    var rowColSize = ((globalStates.colums * globalStates.width * 4)) + (2 * globalStates.left) - globalStates.width;
 
-    globalStates.htmlText = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width = "' + colSize + 'px" height = "' + rowSize + 'px" >\n';
+
+    globalStates.htmlText = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width = "' + rowColSize + 'px" height = "' + rowColSize + 'px"  style="background: ' + globalStates.background + '">\n';
 
     writeLetters();
     finalizeCanvas(idToChange);
 }
-
 
 // write each letter
 function writeLetters() {
@@ -341,19 +153,16 @@ function writeLetters() {
             if (letterTemp in globalStates.database) {
                 letter = letterTemp;
                 i = i + r;
-                textLength = textLength - (r-1);
+                textLength = textLength - (r - 1);
                 break;
             }
         }
 
         if (globalStates.countingLine >= globalStates.colums) {
-
             globalStates.line++;
             globalStates.rowCounter = 0;
             globalStates.countingLine = 0;
-
         }
-
 
         if (letter === "\n" && globalStates.kubik === false) {
             globalStates.line++;
@@ -362,26 +171,24 @@ function writeLetters() {
         }
 
         var size = letterSize(i);
-        renderLetters(letter, size, 0);
-
+        renderLetters(letter, size);
 
         if (letter !== " " && globalStates.text[i + 1] !== " " && i + 1 < globalStates.text.length) {
             if (letter != undefined && globalStates.text[i + 1] != undefined) {
-
 
                 if (globalStates.countingLine >= globalStates.colums - 1) {
                     // console.log("y");
                     if (i + globalStates.colums <= globalStates.text.length) {
                         if (letterSize(i + 1) === "small") {
 
-                           // renderConnector(letter, globalStates.text[i + globalStates.colums], size, true, true);
+                            // renderConnector(letter, globalStates.text[i + globalStates.colums], size, true, true);
 
                             renderConnector(letter, letter, size, true, true);
 
                         } else {
-                           // renderConnector(letter, globalStates.text[i + globalStates.colums], size, false, true);
+                            // renderConnector(letter, globalStates.text[i + globalStates.colums], size, false, true);
 
-                            renderConnector(letter,letter, size, false, true);
+                            renderConnector(letter, letter, size, false, true);
                         }
                     }
                 } else {
@@ -394,34 +201,25 @@ function writeLetters() {
                 }
             }
         }
-
-
-
         // add fillings for the last letters
         if (letter in globalStates.database) {
             if (letter !== " ") {
 
                 var countsize = 0;
-
+                var sideB, sideA;
 
                 if ("small" in letterDatabase[letter]) {
-                    var sideB = globalStates.database[letter][size].right;
-                    var sideA = globalStates.database[letter][size].left;
+                    sideB = globalStates.database[letter][size].right;
+                    sideA = globalStates.database[letter][size].left;
 
-                    var countsize = globalStates.database[letter][size].width / 3;
+                    countsize = globalStates.database[letter][size].width / 3;
                 }
                 else {
-                    var sideB = globalStates.database[letter]["big"].right;
-                    var sideA = globalStates.database[letter]["big"].left;
-                    var countsize = globalStates.database[letter]["big"].width / 3;
+                    sideB = globalStates.database[letter]["big"].right;
+                    sideA = globalStates.database[letter]["big"].left;
+                    countsize = globalStates.database[letter]["big"].width / 3;
                 }
-
-
-                // console.log("hi " + countsize);
-
                 globalStates.countingLine = globalStates.countingLine + countsize;
-
-
             }
             for (var w = 0; w < sideA.length; w++) {
                 if (sideA[w] === 0) {
@@ -431,19 +229,13 @@ function writeLetters() {
                 if (sideB[w] === 0) {
                     renderDot(2, w);
                 }
-
             }
         }
-
     }
-
-  //  console.log("this is it: " + globalStates.countingLine);
-
 }
 
 
 function letterSize(i) {
-
     var size = "big";
     // this is all nessesary to figure out if letter should be small
     if (i - 1 >= 0 && i + 2 <= globalStates.text.length
@@ -461,7 +253,6 @@ function letterSize(i) {
         }
     }
     return size;
-
 }
 
 function renderConnector(letterA, letterB, size, nextSize, possition) {
@@ -471,9 +262,7 @@ function renderConnector(letterA, letterB, size, nextSize, possition) {
         var gradeA = [];
         var gradeB = [];
 
-
         if (possition === true) {
-
             if (size in globalStates.database[letterA]) {
                 gradeA = globalStates.database[letterA][size].bottom;
             } else {
@@ -501,23 +290,22 @@ function renderConnector(letterA, letterB, size, nextSize, possition) {
             }
         }
 
-
         var finalPossition = 0;
-        var pokeIn = false;
+        //  var pokeIn = false;
 
-        for (var i = 0; i < gradeA.length; i++) {
-            var lA = gradeA[i];
-            var lB = gradeB[i];
+        for (var w = 0; w < gradeA.length; w++) {
+            var lA = gradeA[w];
+            var lB = gradeB[w];
 
             if (lA == 0) lA = 0;
             if (lB == 0) lB = 0;
-            grade[i] = lA + lB;
+            grade[w] = lA + lB;
         }
 
-        var size = 200;
+        var size2 = 200;
         for (var i = 0; i < grade.length; i++) {
-            if (grade[i] <= size) {
-                size = grade[i];
+            if (grade[i] <= size2) {
+                size2 = grade[i];
                 finalPossition = i;
                 if ((gradeA[i] === 0 && gradeB[i] != 9) || (gradeA[i] === 0 && gradeB[i] === 0)) break;
             }
@@ -527,37 +315,35 @@ function renderConnector(letterA, letterB, size, nextSize, possition) {
 
 
         if (possition === true) {
-           renderDot(1, finalPossition, true);
+            renderDot(1, finalPossition, true);
         }
         else {
-          renderDot(1, finalPossition, false);
+            renderDot(1, finalPossition, false);
         }
     }
 }
 
 
 function renderDot(vertical, horizontal, possition) {
+    var xx, yy;
 
     if (possition) {
-        var xx = globalStates.top + (globalStates.height * 7 + (globalStates.line * ((globalStates.pixelsPerLetter + 1) * globalStates.height)));
-        var yy = globalStates.left + (globalStates.width * (globalStates.rowCounter - horizontal - 2)); // - vertical
+        xx = globalStates.top + (globalStates.height * 7 + (globalStates.line * ((globalStates.pixelsPerLetter + 1) * globalStates.height)));
+        yy = globalStates.left + (globalStates.width * (globalStates.rowCounter - horizontal - 2)); // - vertical
     }
     else {
-        var xx = globalStates.top + (globalStates.height * horizontal + (globalStates.line * ((globalStates.pixelsPerLetter + 1) * globalStates.height)));
-        var yy = globalStates.left + (globalStates.width * (globalStates.rowCounter - vertical));
+        xx = globalStates.top + (globalStates.height * horizontal + (globalStates.line * ((globalStates.pixelsPerLetter + 1) * globalStates.height)));
+        yy = globalStates.left + (globalStates.width * (globalStates.rowCounter - vertical));
     }
-
 
     globalStates.htmlText =
         globalStates.htmlText + '<rect x="' + yy + '" y="' + xx + '" width="' +
         globalStates.width + '" height="' +
-        globalStates.height + '" style="fill:#' +
+        globalStates.height + '" style="fill:' +
         globalStates.color + '" />\n';
-
-
 }
 
-function renderLetters(thisLetter, size, possition, direction) {
+function renderLetters(thisLetter, size) {
 
     if (thisLetter in globalStates.database) {
         var lineHeight = 7;
@@ -573,7 +359,6 @@ function renderLetters(thisLetter, size, possition, direction) {
             shape = letterDatabase[thisLetter].small.shape
         }
 
-
         globalStates.lineCounter = 0;
 
         for (var i = 0; i < shapeLength; i++) {
@@ -583,7 +368,7 @@ function renderLetters(thisLetter, size, possition, direction) {
                 globalStates.htmlText =
                     globalStates.htmlText + '<rect x="' + yy + '" y="' + xx + '" width="' +
                     globalStates.width + '" height="' +
-                    globalStates.height + '" style="fill:#' +
+                    globalStates.height + '" style="fill:' +
                     globalStates.color + '" />\n'
             }
             globalStates.lineCounter++;
@@ -596,57 +381,6 @@ function renderLetters(thisLetter, size, possition, direction) {
         globalStates.rowCounter++
     }
 }
-
-
-function crc32(str) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
-    // +   improved by: T0bsn
-    // +    changed by: Valentin Heun (removed utf8_encode dependancy. It is not needed for this project)
-    // *     example 1: crc32('Kevin van Zonneveld');
-    // *     returns 1: 1249991249
-
-    var table = "00000000 77073096 EE0E612C 990951BA 076DC419 706AF48F E963A535 9E6495A3 0EDB8832 79DCB8A4 E0D5E91E 97D2D988 09B64C2B 7EB17CBD E7B82D07 90BF1D91 1DB71064 6AB020F2 F3B97148 84BE41DE 1ADAD47D 6DDDE4EB F4D4B551 83D385C7 136C9856 646BA8C0 FD62F97A 8A65C9EC 14015C4F 63066CD9 FA0F3D63 8D080DF5 3B6E20C8 4C69105E D56041E4 A2677172 3C03E4D1 4B04D447 D20D85FD A50AB56B 35B5A8FA 42B2986C DBBBC9D6 ACBCF940 32D86CE3 45DF5C75 DCD60DCF ABD13D59 26D930AC 51DE003A C8D75180 BFD06116 21B4F4B5 56B3C423 CFBA9599 B8BDA50F 2802B89E 5F058808 C60CD9B2 B10BE924 2F6F7C87 58684C11 C1611DAB B6662D3D 76DC4190 01DB7106 98D220BC EFD5102A 71B18589 06B6B51F 9FBFE4A5 E8B8D433 7807C9A2 0F00F934 9609A88E E10E9818 7F6A0DBB 086D3D2D 91646C97 E6635C01 6B6B51F4 1C6C6162 856530D8 F262004E 6C0695ED 1B01A57B 8208F4C1 F50FC457 65B0D9C6 12B7E950 8BBEB8EA FCB9887C 62DD1DDF 15DA2D49 8CD37CF3 FBD44C65 4DB26158 3AB551CE A3BC0074 D4BB30E2 4ADFA541 3DD895D7 A4D1C46D D3D6F4FB 4369E96A 346ED9FC AD678846 DA60B8D0 44042D73 33031DE5 AA0A4C5F DD0D7CC9 5005713C 270241AA BE0B1010 C90C2086 5768B525 206F85B3 B966D409 CE61E49F 5EDEF90E 29D9C998 B0D09822 C7D7A8B4 59B33D17 2EB40D81 B7BD5C3B C0BA6CAD EDB88320 9ABFB3B6 03B6E20C 74B1D29A EAD54739 9DD277AF 04DB2615 73DC1683 E3630B12 94643B84 0D6D6A3E 7A6A5AA8 E40ECF0B 9309FF9D 0A00AE27 7D079EB1 F00F9344 8708A3D2 1E01F268 6906C2FE F762575D 806567CB 196C3671 6E6B06E7 FED41B76 89D32BE0 10DA7A5A 67DD4ACC F9B9DF6F 8EBEEFF9 17B7BE43 60B08ED5 D6D6A3E8 A1D1937E 38D8C2C4 4FDFF252 D1BB67F1 A6BC5767 3FB506DD 48B2364B D80D2BDA AF0A1B4C 36034AF6 41047A60 DF60EFC3 A867DF55 316E8EEF 4669BE79 CB61B38C BC66831A 256FD2A0 5268E236 CC0C7795 BB0B4703 220216B9 5505262F C5BA3BBE B2BD0B28 2BB45A92 5CB36A04 C2D7FFA7 B5D0CF31 2CD99E8B 5BDEAE1D 9B64C2B0 EC63F226 756AA39C 026D930A 9C0906A9 EB0E363F 72076785 05005713 95BF4A82 E2B87A14 7BB12BAE 0CB61B38 92D28E9B E5D5BE0D 7CDCEFB7 0BDBDF21 86D3D2D4 F1D4E242 68DDB3F8 1FDA836E 81BE16CD F6B9265B 6FB077E1 18B74777 88085AE6 FF0F6A70 66063BCA 11010B5C 8F659EFF F862AE69 616BFFD3 166CCF45 A00AE278 D70DD2EE 4E048354 3903B3C2 A7672661 D06016F7 4969474D 3E6E77DB AED16A4A D9D65ADC 40DF0B66 37D83BF0 A9BCAE53 DEBB9EC5 47B2CF7F 30B5FFE9 BDBDF21C CABAC28A 53B39330 24B4A3A6 BAD03605 CDD70693 54DE5729 23D967BF B3667A2E C4614AB8 5D681B02 2A6F2B94 B40BBE37 C30C8EA1 5A05DF1B 2D02EF8D";
-
-    var crc = 0;
-    var x = 0;
-    var y = 0;
-
-    crc = crc ^ (-1);
-    for (var i = 0, iTop = str.length; i < iTop; i++) {
-        y = ( crc ^ str.charCodeAt(i) ) & 0xFF;
-        x = "0x" + table.substr(y * 9, 8);
-        crc = ( crc >>> 8 ) ^ x;
-    }
-
-    return (new Uint32Array([crc ^ (-1)]))[0];
-}
-
-
-function itob32(i)
-{
-    var u = i ;
-    var b32 ="";
-
-    do
-    {
-        var d = u % 32 ;
-        if( d < 10 )
-        {
-            b32.splice( 0, 1, '0' + d ) ;
-        }
-        else
-        {
-            b32.splice( 0, 1, 'a' + d - 10 ) ;
-        }
-
-        u /= 32 ;
-
-    } while( u > 0 );
-
-    return b32 ;
-}
-
 
 var crcTable = [0x0000, 0x1021, 0x2042, 0x3063, 0x4084, 0x50a5,
     0x60c6, 0x70e7, 0x8108, 0x9129, 0xa14a, 0xb16b,
@@ -697,69 +431,57 @@ function crc16(s) {
     var crc = 0xFFFF;
     var j, i;
 
-
     for (i = 0; i < s.length; i++) {
 
-       var c = s.charCodeAt(i);
+        var c = s.charCodeAt(i);
 
-     //   console.log(c);
+        //   console.log(c);
         if (c > 255) {
-        //    throw new RangeError();
+            //    throw new RangeError();
         }
         j = (c ^ (crc >> 8)) & 0xFF;
         crc = crcTable[j] ^ (crc << 8);
     }
 
-    console.log(((crc ^ 0) & 0xFFFF));
     return ((crc ^ 0) & 0xFFFF);
 
 }
 
-
-function itob62(i)
-{
-    var u =  i ;
-    var b32 ="";
+function itob62(i) {
+    var u = i;
+    var b32 = "";
     do
     {
         var d = Math.floor(u % 62);
-        if( d < 10 )
-        {
+        if (d < 10) {
 
-            b32 = String.fromCharCode('0'.charCodeAt(0) + d ) + b32 ;
+            b32 = String.fromCharCode('0'.charCodeAt(0) + d) + b32;
         }
-        else if (d < 36)
-        {
-            b32 = String.fromCharCode('a'.charCodeAt(0) + d - 10 ) + b32;
-        }else{
-            b32 = String.fromCharCode('A'.charCodeAt(0) + d - 36 ) + b32;
+        else if (d < 36) {
+            b32 = String.fromCharCode('a'.charCodeAt(0) + d - 10) + b32;
+        } else {
+            b32 = String.fromCharCode('A'.charCodeAt(0) + d - 36) + b32;
         }
 
 
-        u = Math.floor(u/62);
+        u = Math.floor(u / 62);
 
-    } while( u > 0 );
+    } while (u > 0);
 
-    return b32 ;
+    return b32;
 }
 
-function makeThree(i)
-{
-   if(i.length > 3){
-       return i.substring(0,3);
-   }
-else if(i.length === 2){
-    return "."+i;
-}
-   else if(i.length === 1){
-        return ".."+i;
+function makeThree(i) {
+    if (i.length > 3) {
+        return i.substring(0, 3);
     }
-    else
-   {
-       return i;
-   }
-
-
+    else if (i.length === 2) {
+        return "." + i;
+    }
+    else if (i.length === 1) {
+        return ".." + i;
+    }
+    else {
+        return i;
+    }
 }
-
-

@@ -42,7 +42,7 @@ function finalizeCanvas(idToChange) {
 
 // start canvas
 
-function drawHRQR(idToChange, messageContent, size, color, outline, background) {
+function drawHRQR(idToChange, messageContent, size, color, dotColor, outline, background) {
 
     if (size === undefined) {
         size = 8;
@@ -53,6 +53,11 @@ function drawHRQR(idToChange, messageContent, size, color, outline, background) 
         color = "#000000";
     }
     globalStates.color = color;
+
+    if (dotColor === undefined) {
+        dotColor = color;
+    }
+    globalStates.dotColor = dotColor;
 
     if (outline === undefined) {
         outline = 20;
@@ -340,7 +345,7 @@ function renderDot(vertical, horizontal, possition) {
         globalStates.htmlText + '<rect x="' + yy + '" y="' + xx + '" width="' +
         globalStates.width + '" height="' +
         globalStates.height + '" style="fill:' +
-        globalStates.color + '" />\n';
+        globalStates.dotColor + '" />\n';
 }
 
 function renderLetters(thisLetter, size) {

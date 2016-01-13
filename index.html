@@ -4,7 +4,13 @@
 
   <script type="text/javascript">
    if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required":["jquery-1.8.3.min.js", "museutils.js", "index.css"], "outOfDate":[]};
-</script>
+
+ var dDotColor = "#000000";
+   var dDotColorVisible = "hsl(0,100%,27%)";
+      var dotColor = false;
+
+
+  </script>
   
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
   <meta name="generator" content="2015.0.2.310"/>
@@ -20,6 +26,7 @@
   
      <script src="HRQRLetterdatabase.js"></script>
      <script src="HRQR.js"></script>
+
  <script>
 
 
@@ -36,7 +43,22 @@
                   document.getElementsByTagName("body")[0].innerHTML = '<center><div id="svgDiv"></div></center>';
 document.getElementsByTagName("body")[0].style.minWidth = "0px";
 
-                 drawHRQR("svgDiv",decodeURI(window.location.search.substr(1)));
+                // drawHRQR("svgDiv",decodeURI(window.location.search.substr(1)));
+
+                 var decText = window.location.search.substr(1).split("&");
+
+                // console.log(decodeURI(decText[1]));
+
+                 console.log(encodeURI("hsl(0,100%,27%)"));
+
+                 if(decText[1] !== undefined){
+                     dotColor = true;
+                 }
+
+                 if( dotColor === false)
+                 drawHRQR("svgDiv",decodeURI(decText[0]), 8, "#000000", dDotColor, 20, "#FFFFFF");
+                 else
+                     drawHRQR("svgDiv",decodeURI(decText[0]), 8, "#000000", decodeURI(decText[1]), 20, "#FFFFFF");
 
                  var dataHR = document.getElementById("svgDiv").innerHTML;
                  document.getElementById("svgDiv").innerHTML  = '<a href="https://itunes.apple.com/us/app/hrqr/id1020790145" target="_parent">'+  dataHR  + '</a>';
@@ -51,8 +73,10 @@ drawHRQR("svgDiv","");
 
 window.addEventListener('resize', function () {
 
-    drawHRQR("svgDiv",document.getElementById("textContent").value);
-
+   // drawHRQR("svgDiv",document.getElementById("textContent").value);
+    if( dotColor === false)
+    drawHRQR("svgDiv",document.getElementById("textContent").value, 8, "#000000", dDotColor, 20, "#FFFFFF");
+else     drawHRQR("svgDiv",document.getElementById("textContent").value, 8, "#000000", dDotColorVisible, 20, "#FFFFFF");
 
 });
 
@@ -66,6 +90,30 @@ window.addEventListener('resize', function () {
          var Base64={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",encode:function(e){var t="";var n,r,i,s,o,u,a;var f=0;e=Base64._utf8_encode(e);while(f<e.length){n=e.charCodeAt(f++);r=e.charCodeAt(f++);i=e.charCodeAt(f++);s=n>>2;o=(n&3)<<4|r>>4;u=(r&15)<<2|i>>6;a=i&63;if(isNaN(r)){u=a=64}else if(isNaN(i)){a=64}t=t+this._keyStr.charAt(s)+this._keyStr.charAt(o)+this._keyStr.charAt(u)+this._keyStr.charAt(a)}return t},decode:function(e){var t="";var n,r,i;var s,o,u,a;var f=0;e=e.replace(/[^A-Za-z0-9\+\/\=]/g,"");while(f<e.length){s=this._keyStr.indexOf(e.charAt(f++));o=this._keyStr.indexOf(e.charAt(f++));u=this._keyStr.indexOf(e.charAt(f++));a=this._keyStr.indexOf(e.charAt(f++));n=s<<2|o>>4;r=(o&15)<<4|u>>2;i=(u&3)<<6|a;t=t+String.fromCharCode(n);if(u!=64){t=t+String.fromCharCode(r)}if(a!=64){t=t+String.fromCharCode(i)}}t=Base64._utf8_decode(t);return t},_utf8_encode:function(e){e=e.replace(/\r\n/g,"\n");var t="";for(var n=0;n<e.length;n++){var r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r)}else if(r>127&&r<2048){t+=String.fromCharCode(r>>6|192);t+=String.fromCharCode(r&63|128)}else{t+=String.fromCharCode(r>>12|224);t+=String.fromCharCode(r>>6&63|128);t+=String.fromCharCode(r&63|128)}}return t},_utf8_decode:function(e){var t="";var n=0;var r=c1=c2=0;while(n<e.length){r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r);n++}else if(r>191&&r<224){c2=e.charCodeAt(n+1);t+=String.fromCharCode((r&31)<<6|c2&63);n+=2}else{c2=e.charCodeAt(n+1);c3=e.charCodeAt(n+2);t+=String.fromCharCode((r&15)<<12|(c2&63)<<6|c3&63);n+=3}}return t}}
 
 
+         function sliderUpdate(value){
+
+             dDotColorVisible = "hsl("+value+",100%,27%)";
+             onCheckText();
+         }
+
+         function onCheckText() {
+
+            if(document.getElementById("checkbox").checked === true){
+                dotColor = true;
+
+                document.getElementById("dotcolor1").style.visibility = "visible";
+                document.getElementById("dotcolor2").style.visibility = "visible";
+
+            }else {
+
+                dotColor = false;
+                document.getElementById("dotcolor1").style.visibility = "hidden";
+                document.getElementById("dotcolor2").style.visibility = "hidden";
+            }
+             onInputText();
+
+         }
+
 
          function onInputText() {
 
@@ -73,12 +121,22 @@ window.addEventListener('resize', function () {
 
           msg =  msg.replace(/(\r\n|\n|\r)/gm,"");
 
-             drawHRQR("svgDiv", msg);
+            // drawHRQR("svgDiv", msg);
+if( dotColor === false)
+             drawHRQR("svgDiv",msg, 8, "#000000", dDotColor, 20, "#FFFFFF");
+             else
+    drawHRQR("svgDiv",msg, 8, "#000000", dDotColorVisible, 20, "#FFFFFF");
+
              var svgFile =   Base64.encode(document.getElementById("svgDiv").innerHTML);
 
            //  console.log(svgFile);
 
-             var contentHR =  encodeURI('http://hrqr.org/?'+document.getElementById("textContent").value);
+             var contentHR = "";
+             if( dotColor === false)
+                 contentHR=  encodeURI('http://hrqr.org/?'+document.getElementById("textContent").value);
+             else
+                 contentHR= encodeURI('http://hrqr.org/?'+document.getElementById("textContent").value)+"&"+encodeURI(dDotColorVisible);
+
              document.getElementById("text6").innerHTML = "Get a SVG Image of your code <a style= 'text-decoration: underline;' download='data.svg' href-lang='image/svg+xml' href='data:image/svg+xml;base64,\n"+svgFile+"'>here</a> or embed it in to your own page:<br><div>" +
                      '<b>&lt;iframe src=&quot;'+contentHR+'&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; height=&quot;'+(getSize(2)+30)+'&quot; width=&quot;'+ (getSize(2)+30)+'&quot;&gt;&lt;/iframe&gt;</b></div>' +
                      '<br><br>';
@@ -90,13 +148,13 @@ window.addEventListener('resize', function () {
 
      </script>
 <script>
-     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+   /*  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
      ga('create', 'UA-46215898-3', 'auto');
-     ga('send', 'pageview');
+     ga('send', 'pageview');*/
 
  </script>
  </head>
@@ -141,7 +199,8 @@ window.addEventListener('resize', function () {
      <div class="position_content" id="u75_position_content">
       <div class="clearfix colelem" id="pu144"><!-- group -->
        <div class="grpelem" id="u144"><!-- custom html -->
-        <textarea  id="textContent" rows="3" cols="70" maxlength="250" border="1px" style="border:1px solid #c5c5c5; background-color:#FFFFFF; width:435px; height:50px;" placeholder="Type your message here to generate the HRQR Code...." oninput="onInputText()"></textarea>
+        <textarea  id="textContent" rows="3" cols="70" maxlength="250" border="1px" style="border:1px solid #c5c5c5; background-color:#FFFFFF; width:435px; height:50px;" placeholder="Type your message here to generate the HRQR Code...." oninput="onInputText()"></textarea><br>
+           <input type="checkbox" id="checkbox" name="dotColot" value="dotColor" onchange="onCheckText()"> Better Readability   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;    <input id="dotcolor1" type="range" oninput="sliderUpdate(this.value)" value="0" min="0" max="360" step="1"  style="width: 200px; height: 10px; visibility: hidden"/><span id="dotcolor2"  style="visibility: hidden"> Dot-Color</span><br>
 </div>
        <div class="grpelem" id="u146"><!-- custom html -->
         <div class="clearfix grpelem" id="text6"><!-- content -->

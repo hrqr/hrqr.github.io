@@ -7,6 +7,7 @@
 
  var dDotColor = "#000000";
    var dDotColorVisible = "hsl(0,100%,30%)";
+   var hColor = 0;
       var dotColor = false;
 
 
@@ -47,9 +48,9 @@ document.getElementsByTagName("body")[0].style.minWidth = "0px";
 
                  var decText = window.location.search.substr(1).split("&");
 
-                // console.log(decodeURI(decText[1]));
+                 console.log(decodeURI(decText[1]));
 
-                 console.log(encodeURI("hsl(0,100%,30%)"));
+
 
                  if(decText[1] !== undefined){
                      dotColor = true;
@@ -57,8 +58,17 @@ document.getElementsByTagName("body")[0].style.minWidth = "0px";
 
                  if( dotColor === false)
                  drawHRQR("svgDiv",decodeURI(decText[0]), 8, "#000000", dDotColor, 20, "#FFFFFF");
-                 else
-                     drawHRQR("svgDiv",decodeURI(decText[0]), 8, "#000000", decodeURI(decText[1]), 20, "#FFFFFF");
+                 else {
+                     var tempColor = "";
+                     if( decodeURI(decText[1]).length>3)
+                         tempColor = decodeURI(decText[1]);
+                     else
+                   tempColor = "hsl("+ decodeURI(decText[1])+",100%,30%)";
+
+
+                     drawHRQR("svgDiv", decodeURI(decText[0]), 8, "#000000",tempColor, 20, "#FFFFFF");
+
+                 }
 
                  var dataHR = document.getElementById("svgDiv").innerHTML;
                  document.getElementById("svgDiv").innerHTML  = '<a href="https://itunes.apple.com/us/app/hrqr/id1020790145" target="_parent">'+  dataHR  + '</a>';
@@ -91,7 +101,7 @@ else     drawHRQR("svgDiv",document.getElementById("textContent").value, 8, "#00
 
 
          function sliderUpdate(value){
-
+hColor = value;
              dDotColorVisible = "hsl("+value+",100%,30%)";
              onCheckText();
          }
@@ -135,7 +145,7 @@ if( dotColor === false)
              if( dotColor === false)
                  contentHR=  encodeURI('http://hrqr.org/?'+document.getElementById("textContent").value);
              else
-                 contentHR= encodeURI('http://hrqr.org/?'+document.getElementById("textContent").value)+"&"+encodeURI(dDotColorVisible);
+                 contentHR= encodeURI('http://hrqr.org/?'+document.getElementById("textContent").value)+"&"+encodeURI(hColor);
 
              document.getElementById("text6").innerHTML = "Get a SVG Image of your code <a style= 'text-decoration: underline;' download='data.svg' href-lang='image/svg+xml' href='data:image/svg+xml;base64,\n"+svgFile+"'>here</a> or embed it in to your own page:<br><div>" +
                      '<b>&lt;iframe src=&quot;'+contentHR+'&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; height=&quot;'+(getSize(2)+30)+'&quot; width=&quot;'+ (getSize(2)+30)+'&quot;&gt;&lt;/iframe&gt;</b></div>' +

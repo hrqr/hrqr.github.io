@@ -10,9 +10,11 @@
     <div class="inputoutput">
         <canvas id="canvasOutput" style="background: gray; width: 480px; height: 480px;">Video Frame</canvas>
     </div>
+    <div id="result" style="padding: 10px"></div>
     <div class="inputoutput">
     <video id="videoInput" style="background: gray; visibility: hidden;"> Start Video</video>
     </div>
+
 
 </div>
 <script type="text/javascript">
@@ -58,6 +60,7 @@
         if(msg["mode"] === "msg"){
          //   console.log("overall Time: " ,Date.now() - begin);
             for (let key in msg["msg"]){
+                document.getElementById("result").innerText = msg["msg"][key].msg;
                 console.log('Message : ', msg["msg"][key].msg);
                 let finalPoints = msg["msg"][key].points;
 

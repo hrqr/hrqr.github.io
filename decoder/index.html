@@ -26,7 +26,9 @@
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', '');
 
-    navigator.mediaDevices.getUserMedia({ video: { width: 480, height: 480 } , audio: false })
+    navigator.mediaDevices.getUserMedia({ video: { width: 480, height: 480,  facingMode: {
+                exact: 'environment'
+            } } , audio: false })
         .then(function(stream) {
             console.log('getUserMedia completed successfully.');
             video.srcObject = stream;

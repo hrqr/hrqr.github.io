@@ -5,12 +5,12 @@
     <title>Hello OpenCV.js</title>
 </head>
 <body>
-<button id = 'button' type="button">Start HRQR Video Analytics</button>
+<!--<button id = 'button' type="button">Start HRQR Video Analytics</button>-->
 <div>
     <div class="inputoutput">
         <canvas id="canvasOutput" style="background: gray; width: 480px; height: 480px;">Video Frame</canvas>
     </div>
-    <div id="result" style="padding: 10px"></div>
+    <div id="result" style="padding: 10px; background: lightgray; height: 150px"></div>
     <div class="inputoutput">
     <video id="videoInput" style="background: gray; visibility: hidden;"> Start Video</video>
     </div>
@@ -25,18 +25,6 @@
     video.setAttribute('autoplay', '');
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', '');
-
-    navigator.mediaDevices.getUserMedia({ video: { width: 480, height: 480,  facingMode: {
-                exact: 'environment'
-            } } , audio: false })
-        .then(function(stream) {
-            console.log('getUserMedia completed successfully.');
-            video.srcObject = stream;
-            video.play();
-        })
-        .catch(function(err) {
-            console.log("An error occurred! " + err);
-        });
 
 
     const FPS = 15;
@@ -56,7 +44,19 @@
       //  console.log(Date.now()-timeNow);
         let msg = oEvent.data;
         if(msg["mode"] !== "msg") {
-       console.log("opencv loaded");
+            navigator.mediaDevices.getUserMedia({ video: { width: 480, height: 480,  facingMode: {
+                        exact: 'environment'
+                    } } , audio: false })
+                .then(function(stream) {
+                    console.log('getUserMedia completed successfully.');
+                    video.srcObject = stream;
+                    video.play();
+                    setTimeout(processVideo, 1000);
+
+                })
+                .catch(function(err) {
+                    console.log("An error occurred! " + err);
+                });
         }
 
         if(msg["mode"] === "msg"){
@@ -88,15 +88,6 @@
 
     };
 
-
-    document.getElementById('button').onclick = function (){
-
-
-
-        // schedule first one.
-        processVideo();
-
-    }
 
     function processVideo() {
         begin = Date.now();

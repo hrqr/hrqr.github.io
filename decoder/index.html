@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hello OpenCV.js</title>
+</head>
+<body>
+<button id = 'button' type="button">Start HRQR Video Analytics</button>
+<div>
+    <div class="inputoutput">
+        <canvas id="canvasOutput" style="background: gray; width: 480px; height: 480px;">Video Frame</canvas>
+    </div>
+    <div class="inputoutput">
+    <video id="videoInput" style="background: gray; visibility: hidden;"> Start Video</video>
+    </div>
+
+</div>
+<script type="text/javascript">
+    let begin = 0;
+    let cvWorker = new Worker("cv_worker.js");
+
+    let video = document.getElementById("videoInput"); // video is the id of video tag
+    video.setAttribute('autoplay', '');
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+
+    navigator.mediaDevices.getUserMedia({ video: { width: 480, height: 480 } , audio: false })
+        .then(function(stream) {
+            console.log('getUserMedia completed successfully.');
+            video.srcObject = stream;
+            video.play();
+        })
+        .catch(function(err) {
+            console.log("An error occurred! " + err);
+        });
+
+
+    const FPS = 15;
+
+    let timeNow= 0;
+    let timeLater = 0;
+
+
+
+    let image = document.getElementById('imageSrc');
+    let canvas = document.getElementById('canvasOutput');
+    let context = canvas.getContext('2d');
+
+
+    cvWorker.onmessage = function(oEvent) {
+       // processVideo();
+      //  console.log(Date.now()-timeNow);
+        let msg = oEvent.data;
+        if(msg["mode"] !== "msg") {
+       console.log("opencv loaded");
+        }
+
+        if(msg["mode"] === "msg"){
+         //   console.log("overall Time: " ,Date.now() - begin);
+            for (let key in msg["msg"]){
+                console.log('Message : ', msg["msg"][key].msg);
+                let finalPoints = msg["msg"][key].points;
+
+                context.strokeStyle = '#00ff00';
+                context.lineWidth = 4;
+
+                for (let w = 0; w < finalPoints.length; w++) {
+                    context.beginPath();
+                    context.arc(finalPoints[w].x, finalPoints[w].y, 10, 0, 2 * Math.PI);
+                    context.stroke();
+                    context.beginPath();
+                    context.moveTo(finalPoints[w].x, finalPoints[w].y);
+                    if (w + 1 < finalPoints.length) {
+                        context.lineTo(finalPoints[w + 1].x, finalPoints[w + 1].y);
+                    } else {
+                        context.lineTo(finalPoints[0].x, finalPoints[0].y);
+                    }
+                    context.stroke();
+                }
+
+            }
+        }
+
+    };
+
+
+    document.getElementById('button').onclick = function (){
+
+
+
+        // schedule first one.
+        processVideo();
+
+    }
+
+    function processVideo() {
+        begin = Date.now();
+
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+          context.drawImage(video, 0, 0 );
+          let myData = context.getImageData(0, 0, video.videoWidth, video.videoHeight);
+          cvWorker.postMessage([myData,video.videoWidth, video.videoHeight]);
+
+
+      let delay = 1000/FPS - (Date.now() - begin);
+        setTimeout(processVideo, delay);
+
+      }
+</script>
+
+</body>
+</html>

@@ -30,9 +30,7 @@ function getSize(minus) {
 }
 
 function randomLetter() {
-    var string = "abcdefghijklmnopqrstuvwxyz";
-    return string[Math.floor(Math.random() * 26)]
-
+    return itob62(crc16(globalStates.text)).substring(0, 1);
 }
 
 function finalizeCanvas(idToChange) {

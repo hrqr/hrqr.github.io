@@ -959,6 +959,7 @@ HRQR = function(){
         {letter: 'http://', bitmask: [1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1], hash: 713963},
         {letter: 'https://', bitmask: [1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1], hash: 712939},
         {letter: 'coin://', bitmask: [1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1], hash: 713979},
+        {letter: 'spatialtoolbox://', bitmask: [1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1], hash: 510589},
         {letter: 'Ä', bitmask: [1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0], hash: 1002045},
         {letter: 'ä', bitmask: [1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1], hash: 1002109},
         {letter: 'Ö', bitmask: [1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1], hash: 485981},
@@ -1011,7 +1012,11 @@ HRQR = function(){
         {letter: '•', bitmask: [1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1], hash: 486109}
     ];
 
-
+    this.printBits = function(){
+        for(let key in this.abc){
+            console.log(this.abc[key].letter, this.bitNumber(this.abc[key].bitmask))
+        }
+    }
 };
 let imgForProcess = null;
 let imgForProcessdst = null;

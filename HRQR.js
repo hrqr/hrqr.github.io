@@ -6,7 +6,7 @@ var globalStates = {
     database: letterDatabase,
     lineCounter: 0,
     rowCounter: 0,
-    searchDepth: 7,
+    searchDepth: 17,
     line: 2,
     width: 8,
     height: 8,

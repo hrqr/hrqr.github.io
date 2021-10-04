@@ -19,7 +19,7 @@ HRQRLine = function () {
 HRQR = function(){
     this.w = 0;
     this.h = 0;
-    this.hs = 480;
+    this.hs = 350;
     this.imgGrayReference = null;
     this.imgForProcess = null;
     this.M = null;
@@ -34,69 +34,102 @@ HRQR = function(){
     this.finalPoints = [];
     this.returnMsg = {};
     this.returnindex = 0;
+    this.treshA = [
+        155,180,200,220,240,190
+    ]
+    this.treshCheck = [
+        155,180,240,220,200, 240
+    ]
+    this.x = 0;
+    this.gotALead = false;
 
     this.init = function () {
         this.imgGrayReference = new cv.Mat();
         this.imgForProcess = new cv.Mat();
-        this.M = cv.Mat.ones(9, 9, cv.CV_8U);
+        this.imgForProcessRef = new cv.Mat();
+        this.M = [
+            cv.Mat.ones(11,11, cv.CV_8U),
+            cv.Mat.ones(12,12, cv.CV_8U),
+        cv.Mat.ones(11,11, cv.CV_8U),
+            cv.Mat.ones(12,12, cv.CV_8U),
+            cv.Mat.ones(12,12, cv.CV_8U),
+            cv.Mat.ones(11, 11, cv.CV_8U)];
         this.contours = new cv.MatVector();
-        this.hull = new cv.MatVector();
-        this.cnt = new cv.MatVector();
     }
 
     this.points = {};
     this.lines = {};
     this.canvas = null
+    this.meanValue = 150;
 
     let time = 0;
 
     this.render = function (imageData) {
-        time = Date.now();
-        // console.log("----- clear")
 
+        time2 = Date.now();
+        // console.log("----- clear")
+//console.log(this.treshJ)
         this.returnindex = 0;
         this.finalPoints = [];
         this.points = {};
         this.lines = {};
-        this.hull = new cv.MatVector();
+
         this.returnMsg = {};
         this.h = imageData.height;
         this.w = imageData.width;
 
 
-        this.imgForProcess = cv.matFromImageData(imageData);
+
+
+        if(imageData)
+        this.imgForProcessRef = cv.matFromImageData(imageData);
+        else {
+            this.imgForProcessRef.delete();
+            this.imgGrayReference.delete();
+            this.imgForProcess.delete();
+            return;
+        }
 
         // console.log("Load Image: ", Date.now()-time);
         time = Date.now();
 
 
 // You can try more different parameters
-        cv.cvtColor(this.imgForProcess, this.imgForProcess, cv.COLOR_RGBA2GRAY, 0);
-
-        this.imgGrayReference = this.imgForProcess.clone();
+        cv.cvtColor(this.imgForProcessRef, this.imgForProcessRef, cv.COLOR_RGBA2GRAY, 0);
         // console.log(" Gray and clone: ", Date.now()-time);
         time = Date.now();
-
 // You can try more different parameters
-        cv.erode(this.imgForProcess, this.imgForProcess, this.M, {x: -1, y: -1}, 1, cv.BORDER_CONSTANT);
+        time = Date.now();
+        this.treshA[0]= cv.mean(this.imgForProcessRef)[0];
+        this.gotALead = false;
+        for(let x = 0; x < 6; x++) {
+         //  console.log("running itx : ",x);
+            this.x = x;
+            this.imgForProcess = this.imgForProcessRef.clone();
+            this.imgGrayReference = this.imgForProcess.clone();
+            this.contours = new cv.MatVector();
+            cv.erode(this.imgForProcess, this.imgForProcess, this.M[this.x], {x: -1, y: -1}, 1, cv.BORDER_CONSTANT);
 
         // console.log(" erode : ", Date.now()-time);
-        time = Date.now();
 
-        cv.threshold(this.imgForProcess, this.imgForProcess, 127, 255, cv.THRESH_BINARY);
 
+            cv.threshold(this.imgForProcess, this.imgForProcess, this.treshA[0], 255, cv.THRESH_BINARY);
+          //  cv.adaptiveThreshold(this.imgForProcess, this.imgForProcess, 255,cv.ADAPTIVE_THRESH_MEAN_C , cv.THRESH_BINARY,101,0);
         // console.log("threshold: ", Date.now()-time);
         time = Date.now();
+          //  cv.imshow('testcan',  this.imgForProcess);
 
         cv.findContours(this.imgForProcess, this.contours, this.imgForProcess, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
 
         // console.log("countours: ", Date.now()-time);
         time = Date.now();
+            this.cnt = new cv.MatVector();
+            this.hull = new cv.MatVector();
 
         // filter for certain sizes
         for (let i = 0; i < this.contours.size(); ++i) {
             this.cnt = this.contours.get(i);
-            if (cv.arcLength(this.cnt, true) >= 150) {
+                if (cv.arcLength(this.cnt, true) >= 400) {
                 // You can try more different parameters
                 cv.convexHull(this.cnt, this.imgForProcess, false, true);
                 if (!cv.isContourConvex(this.cnt)) {
@@ -105,7 +138,6 @@ HRQR = function(){
             }
         }
        // this.contours.delete()
-
 
 
         for (let i = 0; i < this.hull.size(); ++i) {
@@ -122,7 +154,6 @@ HRQR = function(){
                 this.points[i].push(new HRQRPoint(this.convexHullData[w], this.convexHullData[w + 1]))
             }
         }
-
 
 
         // add angle and clean up
@@ -218,6 +249,7 @@ HRQR = function(){
             this.isRectangle = false;
             if (this.finalPoints.length === 4) {
 
+
                 // // console.log("lat ", finalPoints);
 // get angles for the final shape
                 let length = this.finalPoints.length;
@@ -268,6 +300,7 @@ HRQR = function(){
 
                 // draw points of potential rectangle
                 if (this.isRectangle) {
+                        this.gotALead = true;
                     // console.log("before decode: ", Date.now()-time);
                     time = Date.now();
                     this.decode(this.finalPoints);
@@ -281,12 +314,33 @@ HRQR = function(){
         // console.log("final decoder: ", Date.now()-time);
         time = Date.now();
 
+
+
+            //  src.delete(); thresh.delete();
+
+           if(Object.keys(this.returnMsg).length) {
+               this.imgForProcessRef.delete();
         this.cnt.delete();
         this.imgGrayReference.delete();
+               this.imgForProcess.delete();
         this.hull.delete();
+               this.contours.delete();
+               //   console.log("final decoder: ", Date.now()-time2);
+               //   console.log("what a message?", this.returnMsg)
+               return this.returnMsg;
+           }
+            //   console.log("final decoder: ", Date.now()-time2);
+            this.imgGrayReference.delete();
         this.imgForProcess.delete();
-        //  src.delete(); thresh.delete();
-        return this.returnMsg;
+            this.hull.delete();
+            this.cnt.delete();
+           this.contours.delete();
+
+           if(this.gotALead === false){
+               return null;
+           };
+        }
+        this.imgForProcessRef.delete();
     }
 
     this.decode = function (rect) {
@@ -310,14 +364,13 @@ HRQR = function(){
         time = Date.now();
 
         if (homography) {
-            cv.warpPerspective(this.imgGrayReference, this.imgGrayReference, homography, {width: this.hs, height: this.hs}, cv.INTER_NEAREST);
+            cv.warpPerspective(this.imgForProcessRef, this.imgGrayReference, homography, {width: this.hs, height: this.hs}, cv.INTER_NEAREST);
 
             // console.log("warp: ", Date.now()-time);
             time = Date.now();
 
             //cv.rotate(this.imgGrayReference,this.imgGrayReference, cv.ROTATE_90_CLOCKWISE);
             // bitmap image
-            cv.threshold(this.imgGrayReference, this.imgGrayReference, 127, 255, cv.THRESH_BINARY);
 
             // console.log("rotate: ", Date.now()-time);
             time = Date.now();
@@ -341,10 +394,43 @@ HRQR = function(){
             let colmCount = 0, rowCount = 0;
 
             //int flipby90 = 0;
-            let sensitiveEdge = 170;
+            let sensitiveEdge = this.treshA[this.x];
             let edgeOfset = 1;
 
             let sensitiveCountSearch = 10;
+            let brightestpoint = 0;
+            let darkest = 255;
+
+
+            for (let i = 1; i < this.hs; i++) {
+                if (this.colm.data[i] > brightestpoint) {
+                    brightestpoint = this.colm.data[i];
+                }
+                if (this.colm.data[i] < darkest) {
+                    darkest = this.colm.data[i];
+                }
+                if (this.row.data[i] > brightestpoint) {
+                    brightestpoint = this.colm.data[i];
+                }
+                if (this.row.data[i] < darkest) {
+                    darkest = this.colm.data[i];
+                }
+            }
+            let inbetween = parseInt(((brightestpoint-darkest)/2)+darkest)+20;
+            if(darkest < 240) {
+                this.treshCheck[1] =  this.treshA[0]
+                this.treshCheck[1] = inbetween;
+                this.treshCheck[2] = inbetween + 20;
+                this.treshCheck[3] = inbetween + 40;
+                this.treshCheck[4] = inbetween + 60;
+                this.treshCheck[5] = inbetween + 80;
+            }
+            //   console.log( this.treshCheck)
+            this.treshA = this.treshCheck;
+            // sensitiveEdge = this.treshA[this.treshJ];
+
+
+           // console.log("superbright ",brightestpoint, "dark ", darkest, "between ", inbetween);
 
             // define edges of the tag for colums
             // min
@@ -391,6 +477,12 @@ HRQR = function(){
                     rowHigh = this.row.data[i];
             }
 
+           // console.log(rowMin, rowMax)
+          //  cv.adaptiveThreshold(this.imgGrayReference, this.imgGrayReference, 255,cv.ADAPTIVE_THRESH_MEAN_C , cv.THRESH_BINARY,3,0);
+
+           cv.threshold(this.imgGrayReference, this.imgGrayReference, this.treshA[this.x], 255, cv.THRESH_BINARY);
+
+           // console.log("thisvalue ", this.treshA[this.treshJ])
 
             if (rowHigh > colmHigh) {
                 cv.rotate(this.imgGrayReference, this.imgGrayReference, cv.ROTATE_90_CLOCKWISE);
@@ -472,7 +564,6 @@ HRQR = function(){
             //done with the rows and colms
             this.row.delete()
             this.colm.delete()
-
             rowCount = rowCount / 2;
             let blockCount = (colmCount * 8) + 7;
 
@@ -540,6 +631,7 @@ HRQR = function(){
                     let resBitNumber = this.bitNumber(bitLetter);
 
                     if (resBitNumber === 912127) {
+
                         cv.rotate(this.imgGrayReference, this.imgGrayReference, cv.ROTATE_180);
 
                         for (let i = 0; i < blockCount; i++) {
@@ -1014,7 +1106,7 @@ HRQR = function(){
 
     this.printBits = function(){
         for(let key in this.abc){
-            console.log(this.abc[key].letter, this.bitNumber(this.abc[key].bitmask))
+           // console.log(this.abc[key].letter, this.bitNumber(this.abc[key].bitmask))
         }
     }
 };

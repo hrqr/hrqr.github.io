@@ -50,9 +50,10 @@
                 .then(function(stream) {
                     console.log('getUserMedia completed successfully.');
                     video.srcObject = stream;
-                    video.play();
-                    setTimeout(processVideo, 1000);
 
+                    video.oncanplay = (event) => {
+                        processVideo();
+                    };
                 })
                 .catch(function(err) {
                     console.log("An error occurred! " + err);
@@ -90,6 +91,7 @@
 
 
     function processVideo() {
+        video.play();
         begin = Date.now();
 
           canvas.width = video.videoWidth;
